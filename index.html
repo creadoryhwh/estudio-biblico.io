@@ -6,11 +6,10 @@
 <title>Libro de Estudio: Genealogía de Génesis 5 y 11</title>
 <style>
   :root{
-    --tinta:#3a2312; /* Color sepia oscuro para la letra */
+    --tinta:#3a2312;
     --rojo-vino:#7a201c;
     --dorado:#b8860b;
     --borde-oro:#c9a96a;
-    --fondo-panel:rgba(255, 250, 235, 0.7); /* Fondo semi-transparente para leer bien */
   }
   
   *{box-sizing:border-box; margin:0; padding:0;}
@@ -21,26 +20,28 @@
     line-height:1.8;
     font-size: 18px;
     
-    /* AQUÍ APLICAMOS TU IMAGEN DE FONDO */
+    /* FONDO DE PERGAMINO */
     background-image: url('pergamino.jpg'); 
-    background-color: #e5d5b7; /* Color de respaldo */
+    background-color: #e5d5b7;
     background-size: cover;
     background-attachment: fixed;
     background-position: center;
   }
   
-  /* HEADER (Logos) */
+  /* HEADER (Logos SVG) */
   header{
-    background:rgba(26, 26, 26, 0.95); color:#fff; padding:1rem 2rem; 
+    background:rgba(26, 26, 26, 0.95); color:#fff; padding:0.8rem 2rem; 
     display:flex; justify-content:space-between; align-items:center; 
     position:sticky; top:0; z-index:100;
     box-shadow: 0 4px 10px rgba(0,0,0,0.4);
     border-bottom: 2px solid var(--dorado);
   }
-  .logo-shock{font-family:'Arial Black', sans-serif; font-style:italic; font-size:1.2rem; color:var(--dorado);}
-  .logo-shock span{color:var(--rojo-vino); text-shadow: 1px 1px 0 #fff;}
-  .logo-theos{font-family:Arial, sans-serif; font-weight:bold; color:#c0392b; letter-spacing:3px; font-size: 1rem;}
-  .logo-theos small{display:block; font-size:.6rem; color:#aaa; letter-spacing:5px;}
+  
+  /* ESTILOS PARA LOS LOGOS SVG */
+  .header-logo-svg {
+    height: 50px; 
+    width: auto;
+  }
 
   /* LAYOUT DEL LIBRO */
   .layout{
@@ -48,19 +49,19 @@
     grid-template-columns:280px 1fr; 
     max-width:1300px; 
     margin: 2rem auto; 
-    background: rgba(253, 251, 247, 0.85); /* Papel semi-transparente general */
+    background: rgba(253, 251, 247, 0.85);
     box-shadow: 0 0 30px rgba(0,0,0,0.3); 
     border: 1px solid var(--borde-oro);
     border-radius: 4px;
     min-height: 90vh;
   }
   
-  /* INDICE (Menú lateral) */
+  /* INDICE */
   aside{
     background: rgba(245, 235, 215, 0.8); 
     border-right:2px solid var(--borde-oro); 
-    padding:3rem 1.5rem; position:sticky; top:70px; 
-    height:calc(100vh - 70px); overflow-y:auto;
+    padding:3rem 1.5rem; position:sticky; top:90px; 
+    height:calc(100vh - 90px); overflow-y:auto;
   }
   aside h2{font-size:1.1rem; color:var(--rojo-vino); text-transform:uppercase; letter-spacing:2px; border-bottom:2px solid var(--dorado); padding-bottom:.5rem; margin-bottom:1.5rem; font-family:Arial, sans-serif;}
   aside nav ul{list-style:none;}
@@ -70,9 +71,8 @@
 
   /* CONTENIDO PRINCIPAL */
   main{padding:4rem 5rem; scroll-behavior: smooth;}
-  section{margin-bottom:5rem; scroll-margin-top:90px;}
+  section{margin-bottom:5rem; scroll-margin-top:100px;}
   
-  /* Títulos de Capítulos */
   .chapter-title{
     font-size:2.2rem; color:var(--rojo-vino); 
     margin-bottom:1.5rem; padding-bottom: 0.5rem;
@@ -86,10 +86,9 @@
     padding:.2rem .8rem; border-radius:4px; font-family:Arial, sans-serif;
   }
   p { margin-bottom: 1.2rem; text-align: justify; }
-  
   h3 { font-size: 1.5rem; color:var(--rojo-vino); margin: 2rem 0 1rem 0; font-style: italic;}
 
-  /* DISEÑO DE FICHAS (Acordeón) */
+  /* FICHAS (Acordeón) */
   .ficha-container {
     background: rgba(255, 255, 255, 0.5);
     border: 1px solid var(--borde-oro);
@@ -97,80 +96,30 @@
     box-shadow: 0 4px 15px rgba(0,0,0,0.05);
     margin-bottom: 3rem;
   }
-  .ficha-item {
-    border-bottom: 1px solid var(--borde-oro);
-  }
+  .ficha-item { border-bottom: 1px solid var(--borde-oro); }
   .ficha-item:last-child { border-bottom: none; }
-  
   .ficha-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.2rem 1.5rem;
-    cursor: pointer;
-    background: rgba(240, 230, 210, 0.6);
-    transition: background 0.3s;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.2rem 1.5rem; cursor: pointer;
+    background: rgba(240, 230, 210, 0.6); transition: background 0.3s;
   }
   .ficha-header:hover { background: rgba(230, 215, 190, 0.9); }
   .ficha-header.active { background: rgba(255, 255, 255, 0.8); border-bottom: 1px dashed var(--borde-oro); }
-  
-  .ficha-nombre {
-    font-size: 1.3rem;
-    font-weight: bold;
-    color: var(--rojo-vino);
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-family: 'Georgia', serif;
-  }
-  .ficha-nombre::before {
-    content: '✝';
-    color: var(--dorado);
-    font-size: 1.2rem;
-  }
-  .ficha-edad {
-    font-family: Arial, sans-serif;
-    font-weight: bold;
-    color: #fdfbf7;
-    background: var(--rojo-vino);
-    padding: 0.2rem 0.8rem;
-    border-radius: 20px;
-    font-size: 0.85rem;
-  }
-  
-  /* Contenido de la ficha */
-  .ficha-contenido {
-    display: none;
-    padding: 1.5rem 2rem;
-    background: rgba(255, 252, 245, 0.7);
-    font-size: 1.05rem;
-    line-height: 1.8;
-  }
-  .ficha-header.active + .ficha-contenido {
-    display: block;
-    animation: fadeIn 0.4s ease-in-out;
-  }
+  .ficha-nombre { font-size: 1.3rem; font-weight: bold; color: var(--rojo-vino); display: flex; align-items: center; gap: 10px; }
+  .ficha-nombre::before { content: '✝'; color: var(--dorado); font-size: 1.2rem; }
+  .ficha-edad { font-family: Arial, sans-serif; font-weight: bold; color: #fdfbf7; background: var(--rojo-vino); padding: 0.2rem 0.8rem; border-radius: 20px; font-size: 0.85rem; }
+  .ficha-contenido { display: none; padding: 1.5rem 2rem; background: rgba(255, 252, 245, 0.7); font-size: 1.05rem; line-height: 1.8; }
+  .ficha-header.active + .ficha-contenido { display: block; animation: fadeIn 0.4s ease-in-out; }
   .ficha-contenido strong { color: var(--rojo-vino); }
-
   @keyframes fadeIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
 
-  /* ESTILOS DE LECTURA BÍBLICA */
-  .cita-biblica {
-    background: rgba(235, 225, 205, 0.6);
-    border-left: 4px solid var(--rojo-vino);
-    padding: 1.2rem 1.5rem;
-    margin: 1.5rem 0;
-    font-style: italic;
-    color: var(--tinta);
-    font-size: 1.05rem;
-    border-radius: 0 8px 8px 0;
-  }
+  /* CITAS Y LISTAS */
+  .cita-biblica { background: rgba(235, 225, 205, 0.6); border-left: 4px solid var(--rojo-vino); padding: 1.2rem 1.5rem; margin: 1.5rem 0; font-style: italic; color: var(--tinta); font-size: 1.05rem; border-radius: 0 8px 8px 0; }
   .cita-biblica strong { display: block; font-style: normal; color: var(--rojo-vino); font-family: Arial; margin-bottom: 0.5rem; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px;}
-
   ul.lista-estudio { margin-left: 1.5rem; margin-bottom: 1.5rem; }
   ul.lista-estudio li { margin-bottom: 0.8rem; }
 
-  /* LÍNEA DE TIEMPO ESTÁTICA */
+  /* LÍNEA DE TIEMPO */
   .timeline-box { background: rgba(255, 255, 255, 0.7); padding: 2rem; border: 1px solid var(--borde-oro); border-radius: 8px; overflow-x: auto; margin-bottom: 2rem;}
   .timeline-wrapper { position: relative; min-width: 700px; height: 300px; margin-top: 40px; padding-bottom: 30px;}
   .timeline-axis { position: absolute; bottom: 0; left: 0; width: 100%; height: 3px; background: var(--tinta); }
@@ -192,7 +141,12 @@
   footer .versiculos-finales {max-width: 800px; margin: 0 auto 2rem auto; font-style: italic; color: #e8dcc0; font-size: 1.1rem;}
   footer .versiculos-finales p {margin-bottom: 1.5rem;}
   footer .versiculos-finales strong {color: var(--dorado); font-style: normal; display: block; font-family: Arial; font-size: 0.9rem; text-transform: uppercase; margin-bottom: 5px;}
-  .logos-footer{display:flex; justify-content:center; gap:2rem; margin-top: 2rem;}
+  .logos-footer{display:flex; justify-content:center; align-items:center; gap:3rem; margin-top: 2rem;}
+  
+  .footer-logo-svg {
+    height: 60px;
+    width: auto;
+  }
 
   @media(max-width:900px){
     .layout{grid-template-columns:1fr; margin: 1rem;}
@@ -206,8 +160,23 @@
 <body>
 
 <header>
-  <div class="logo-shock">SHOCK<span>99.5</span> FM</div>
-  <div class="logo-theos">THEOS<br><small>LOGOS</small></div>
+  <!-- LOGO SHOCK EN SVG (Código integrado) -->
+  <svg class="header-logo-svg" viewBox="0 0 300 100" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="shockGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" style="stop-color:#f1c40f;stop-opacity:1" />
+        <stop offset="100%" style="stop-color:#c0392b;stop-opacity:1" />
+      </linearGradient>
+    </defs>
+    <text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" font-family="Arial Black, Impact, sans-serif" font-style="italic" font-size="50" fill="url(#shockGrad)" stroke="#000" stroke-width="2">SHOCK</text>
+    <text x="50%" y="85%" dominant-baseline="middle" text-anchor="middle" font-family="Arial, sans-serif" font-weight="bold" font-size="24" fill="#d4a017" letter-spacing="2">99.5 FM</text>
+  </svg>
+  
+  <!-- LOGO THEOS EN SVG (Código integrado) -->
+  <svg class="header-logo-svg" viewBox="0 0 300 100" xmlns="http://www.w3.org/2000/svg">
+    <text x="50%" y="45%" dominant-baseline="middle" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="bold" font-size="46" fill="#c0392b" letter-spacing="5">THEOS</text>
+    <text x="50%" y="80%" dominant-baseline="middle" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="bold" font-size="22" fill="#aaa" letter-spacing="12">LOGOS</text>
+  </svg>
 </header>
 
 <div class="layout">
@@ -435,9 +404,18 @@
     <p><strong>Génesis 5:5</strong><br>«Y fueron todos los días que vivió Adán novecientos treinta años; y murió.»</p>
     <p><strong>Romanos 5:8</strong><br>«Mas Dios muestra su amor para con nosotros, en que siendo aún pecadores, Cristo murió por nosotros.»</p>
   </div>
+  
+  <!-- LOGOS EN EL FOOTER (SVG) -->
   <div class="logos-footer">
-    <div class="logo-shock">SHOCK<span>99.5</span> FM</div>
-    <div class="logo-theos">THEOS<br><small>LOGOS</small></div>
+    <svg class="footer-logo-svg" viewBox="0 0 300 100" xmlns="http://www.w3.org/2000/svg">
+      <text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" font-family="Arial Black, Impact, sans-serif" font-style="italic" font-size="50" fill="#f1c40f" stroke="#000" stroke-width="2">SHOCK</text>
+      <text x="50%" y="85%" dominant-baseline="middle" text-anchor="middle" font-family="Arial, sans-serif" font-weight="bold" font-size="24" fill="#c0392b" letter-spacing="2">99.5 FM</text>
+    </svg>
+    
+    <svg class="footer-logo-svg" viewBox="0 0 300 100" xmlns="http://www.w3.org/2000/svg">
+      <text x="50%" y="45%" dominant-baseline="middle" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="bold" font-size="46" fill="#c0392b" letter-spacing="5">THEOS</text>
+      <text x="50%" y="80%" dominant-baseline="middle" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="bold" font-size="22" fill="#aaa" letter-spacing="12">LOGOS</text>
+    </svg>
   </div>
 </footer>
 
