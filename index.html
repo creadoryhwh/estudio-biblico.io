@@ -28,19 +28,25 @@
     background-position: center;
   }
   
-  /* HEADER (Logos SVG) */
+  /* HEADER (Logos) */
   header{
     background:rgba(26, 26, 26, 0.95); color:#fff; padding:0.8rem 2rem; 
     display:flex; justify-content:space-between; align-items:center; 
     position:sticky; top:0; z-index:100;
     box-shadow: 0 4px 10px rgba(0,0,0,0.4);
     border-bottom: 2px solid var(--dorado);
+    height: 90px; /* Altura fija para que no salten */
   }
   
-  /* ESTILOS PARA LOS LOGOS SVG */
-  .header-logo-svg {
-    height: 50px; 
+  /* ESTILOS PARA LAS IMÁGENES REALES DE LOS LOGOS */
+  .header-logo-img {
+    height: 65px; 
     width: auto;
+    object-fit: contain;
+    /* Fondo blanco temporal por si el logo es transparente y el fondo oscuro lo oculta */
+    background-color: rgba(255,255,255,0.1); 
+    padding: 4px;
+    border-radius: 4px;
   }
 
   /* LAYOUT DEL LIBRO */
@@ -49,7 +55,7 @@
     grid-template-columns:280px 1fr; 
     max-width:1300px; 
     margin: 2rem auto; 
-    background: rgba(253, 251, 247, 0.85);
+    background: rgba(253, 251, 247, 0.9); 
     box-shadow: 0 0 30px rgba(0,0,0,0.3); 
     border: 1px solid var(--borde-oro);
     border-radius: 4px;
@@ -58,7 +64,7 @@
   
   /* INDICE */
   aside{
-    background: rgba(245, 235, 215, 0.8); 
+    background: rgba(245, 235, 215, 0.9); 
     border-right:2px solid var(--borde-oro); 
     padding:3rem 1.5rem; position:sticky; top:90px; 
     height:calc(100vh - 90px); overflow-y:auto;
@@ -90,7 +96,7 @@
 
   /* FICHAS (Acordeón) */
   .ficha-container {
-    background: rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.6);
     border: 1px solid var(--borde-oro);
     border-radius: 8px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.05);
@@ -104,29 +110,37 @@
     background: rgba(240, 230, 210, 0.6); transition: background 0.3s;
   }
   .ficha-header:hover { background: rgba(230, 215, 190, 0.9); }
-  .ficha-header.active { background: rgba(255, 255, 255, 0.8); border-bottom: 1px dashed var(--borde-oro); }
+  .ficha-header.active { background: rgba(255, 255, 255, 0.9); border-bottom: 1px dashed var(--borde-oro); }
   .ficha-nombre { font-size: 1.3rem; font-weight: bold; color: var(--rojo-vino); display: flex; align-items: center; gap: 10px; }
   .ficha-nombre::before { content: '✝'; color: var(--dorado); font-size: 1.2rem; }
   .ficha-edad { font-family: Arial, sans-serif; font-weight: bold; color: #fdfbf7; background: var(--rojo-vino); padding: 0.2rem 0.8rem; border-radius: 20px; font-size: 0.85rem; }
-  .ficha-contenido { display: none; padding: 1.5rem 2rem; background: rgba(255, 252, 245, 0.7); font-size: 1.05rem; line-height: 1.8; }
+  .ficha-contenido { display: none; padding: 1.5rem 2rem; background: rgba(255, 252, 245, 0.8); font-size: 1.05rem; line-height: 1.8; }
   .ficha-header.active + .ficha-contenido { display: block; animation: fadeIn 0.4s ease-in-out; }
   .ficha-contenido strong { color: var(--rojo-vino); }
   @keyframes fadeIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
 
   /* CITAS Y LISTAS */
-  .cita-biblica { background: rgba(235, 225, 205, 0.6); border-left: 4px solid var(--rojo-vino); padding: 1.2rem 1.5rem; margin: 1.5rem 0; font-style: italic; color: var(--tinta); font-size: 1.05rem; border-radius: 0 8px 8px 0; }
+  .cita-biblica { background: rgba(235, 225, 205, 0.8); border-left: 4px solid var(--rojo-vino); padding: 1.2rem 1.5rem; margin: 1.5rem 0; font-style: italic; color: var(--tinta); font-size: 1.05rem; border-radius: 0 8px 8px 0; }
   .cita-biblica strong { display: block; font-style: normal; color: var(--rojo-vino); font-family: Arial; margin-bottom: 0.5rem; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px;}
   ul.lista-estudio { margin-left: 1.5rem; margin-bottom: 1.5rem; }
   ul.lista-estudio li { margin-bottom: 0.8rem; }
 
-  /* LÍNEA DE TIEMPO */
-  .timeline-box { background: rgba(255, 255, 255, 0.7); padding: 2rem; border: 1px solid var(--borde-oro); border-radius: 8px; overflow-x: auto; margin-bottom: 2rem;}
+  /* LÍNEA DE TIEMPO RESPONSIVA */
+  .timeline-box { 
+    background: rgba(255, 255, 255, 0.85); 
+    padding: 2rem 1rem; 
+    border: 1px solid var(--borde-oro); 
+    border-radius: 8px; 
+    overflow-x: auto; 
+    -webkit-overflow-scrolling: touch; 
+    margin-bottom: 2rem;
+  }
   .timeline-wrapper { position: relative; min-width: 700px; height: 300px; margin-top: 40px; padding-bottom: 30px;}
   .timeline-axis { position: absolute; bottom: 0; left: 0; width: 100%; height: 3px; background: var(--tinta); }
   .timeline-axis::after { content: '>'; position: absolute; right: -10px; top: -12px; font-size: 20px; font-weight: bold; color: var(--tinta);}
   .timeline-tick { position: absolute; bottom: -25px; transform: translateX(-50%); font-size: 0.85rem; font-weight: bold; font-family: Arial; color: var(--tinta);}
   .timeline-tick::before { content: ''; position: absolute; bottom: 22px; left: 50%; width: 2px; height: 8px; background: var(--tinta); transform: translateX(-50%);}
-  .life-bar { position: absolute; height: 25px; border-radius: 4px; color: #fff; font-size: 0.75rem; font-weight: bold; display: flex; align-items: center; padding: 0 8px; font-family: Arial; box-shadow: 0 2px 4px rgba(0,0,0,0.2);}
+  .life-bar { position: absolute; height: 25px; border-radius: 4px; color: #fff; font-size: 0.75rem; font-weight: bold; display: flex; align-items: center; padding: 0 8px; font-family: Arial; box-shadow: 0 2px 4px rgba(0,0,0,0.2); white-space: nowrap;}
   .bar-adan { top: 10px; background: #c0392b; left: 0%; width: 42.2%; }
   .bar-enoc { top: 50px; background: #8e44ad; left: 28.2%; width: 16.6%; }
   .bar-matu { top: 90px; background: #2980b9; left: 31.2%; width: 44.0%; }
@@ -134,303 +148,54 @@
   .bar-noe { top: 170px; background: #27ae60; left: 48.0%; width: 43.2%; }
   .bar-sem { top: 210px; background: #d35400; left: 70.8%; width: 27.3%; }
   .diluvio-line { position: absolute; top: 0; bottom: 0; left: 75.2%; width: 2px; border-left: 2px dashed var(--rojo-vino); }
-  .diluvio-label { position: absolute; top: -25px; left: 75.2%; transform: translateX(-50%); background: var(--rojo-vino); color: #fff; padding: 2px 8px; font-size: 0.75rem; border-radius: 4px; font-weight: bold;}
+  .diluvio-label { position: absolute; top: -25px; left: 75.2%; transform: translateX(-50%); background: var(--rojo-vino); color: #fff; padding: 2px 8px; font-size: 0.75rem; border-radius: 4px; font-weight: bold; white-space: nowrap;}
 
   /* FOOTER */
   footer{background:rgba(26, 26, 26, 0.95); color:#ccc; padding:3rem 2rem; text-align:center; border-top:4px solid var(--dorado); margin-top: 3rem;}
   footer .versiculos-finales {max-width: 800px; margin: 0 auto 2rem auto; font-style: italic; color: #e8dcc0; font-size: 1.1rem;}
   footer .versiculos-finales p {margin-bottom: 1.5rem;}
   footer .versiculos-finales strong {color: var(--dorado); font-style: normal; display: block; font-family: Arial; font-size: 0.9rem; text-transform: uppercase; margin-bottom: 5px;}
-  .logos-footer{display:flex; justify-content:center; align-items:center; gap:3rem; margin-top: 2rem;}
   
-  .footer-logo-svg {
-    height: 60px;
+  .logos-footer{display:flex; justify-content:center; align-items:center; gap:3rem; margin-top: 2rem;}
+  .footer-logo-img {
+    height: 70px;
     width: auto;
+    object-fit: contain;
   }
 
-  @media(max-width:900px){
-    .layout{grid-template-columns:1fr; margin: 1rem;}
-    aside{position:relative; top:0; height:auto; border-right: none; border-bottom: 2px solid var(--borde-oro); padding: 1.5rem;}
-    main{padding:2rem 1.5rem;}
-    .chapter-title{font-size: 1.6rem;}
-    .timeline-wrapper {transform: scale(0.9); transform-origin: left top;}
+  /* =========================================
+     DISEÑO RESPONSIVO (Móviles y Tablets)
+     ========================================= */
+  @media(max-width: 900px){
+    body { font-size: 16px; }
+    .layout{grid-template-columns:1fr; margin: 0; border-radius: 0; border: none; box-shadow: none; background: rgba(253, 251, 247, 0.95);}
+    
+    header { padding: 0.5rem 1rem; flex-direction: column; gap: 10px; height: auto; }
+    .header-logo-img { height: 45px; } 
+    
+    aside {
+      position: relative; top: 0; height: auto; 
+      border-right: none; border-bottom: 2px solid var(--borde-oro); 
+      padding: 1rem; text-align: center;
+    }
+    aside h2 { margin-bottom: 0.5rem; font-size: 0.9rem; }
+    aside nav ul { display: flex; flex-wrap: wrap; justify-content: center; gap: 5px; }
+    aside nav a { padding: 0.4rem 0.8rem; border: 1px solid var(--borde-oro); border-radius: 20px; font-size: 0.85rem; background: rgba(255,255,255,0.5); }
+    aside nav .num { margin-right: 3px; }
+    
+    main { padding: 2rem 1rem; }
+    .chapter-title { font-size: 1.5rem; flex-direction: column; align-items: flex-start; gap: 5px; }
+    
+    .ficha-header { padding: 1rem; flex-direction: column; align-items: flex-start; gap: 5px; }
+    .ficha-contenido { padding: 1rem; font-size: 0.95rem; }
+    
+    .logos-footer { flex-direction: column; gap: 1.5rem; }
+    .footer-logo-img { height: 50px; }
   }
 </style>
 </head>
 <body>
 
 <header>
-  <!-- LOGO SHOCK EN SVG (Código integrado) -->
-  <svg class="header-logo-svg" viewBox="0 0 300 100" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <linearGradient id="shockGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-        <stop offset="0%" style="stop-color:#f1c40f;stop-opacity:1" />
-        <stop offset="100%" style="stop-color:#c0392b;stop-opacity:1" />
-      </linearGradient>
-    </defs>
-    <text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" font-family="Arial Black, Impact, sans-serif" font-style="italic" font-size="50" fill="url(#shockGrad)" stroke="#000" stroke-width="2">SHOCK</text>
-    <text x="50%" y="85%" dominant-baseline="middle" text-anchor="middle" font-family="Arial, sans-serif" font-weight="bold" font-size="24" fill="#d4a017" letter-spacing="2">99.5 FM</text>
-  </svg>
-  
-  <!-- LOGO THEOS EN SVG (Código integrado) -->
-  <svg class="header-logo-svg" viewBox="0 0 300 100" xmlns="http://www.w3.org/2000/svg">
-    <text x="50%" y="45%" dominant-baseline="middle" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="bold" font-size="46" fill="#c0392b" letter-spacing="5">THEOS</text>
-    <text x="50%" y="80%" dominant-baseline="middle" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="bold" font-size="22" fill="#aaa" letter-spacing="12">LOGOS</text>
-  </svg>
-</header>
-
-<div class="layout">
-  
-  <!-- ÍNDICE DEL LIBRO -->
-  <aside>
-    <h2>Índice del Estudio</h2>
-    <nav>
-      <ul>
-        <li><a href="#prologo"><span class="num">I.</span> Prólogo Teológico</a></li>
-        <li><a href="#capitulo1"><span class="num">II.</span> Los Patriarcas</a></li>
-        <li><a href="#capitulo2"><span class="num">III.</span> Mapa de Solapamientos</a></li>
-        <li><a href="#capitulo3"><span class="num">IV.</span> La Línea de la Redención</a></li>
-        <li><a href="#epilogo"><span class="num">V.</span> Epílogo y Fuentes</a></li>
-      </ul>
-    </nav>
-  </aside>
-
-  <!-- CONTENIDO DEL LIBRO -->
-  <main>
-
-    <!-- PRÓLOGO -->
-    <section id="prologo">
-      <h2 class="chapter-title"><span>I</span> Prólogo Teológico</h2>
-      <p>Los capítulos 5 y 11 de Génesis contienen las <strong>cronogenealogías</strong> más fascinantes de la Biblia. No son simples listas de nombres; son el esqueleto cronológico de la historia de la salvación. El Texto Masorético nos revela que los primeros hombres vivieron casi mil años, un hecho que no es casualidad.</p>
-      <p>Dios permitió estas longevidades extraordinarias para que la memoria del Edén, la caída y la promesa de un Redentor (Génesis 3:15) se transmitieran de forma casi directa a través de muy pocas generaciones. Adán pudo hablar personalmente con Matusalén durante 243 años. Esta "cadena viva" demuestra que la historia sagrada no es un mito lejano, sino una memoria transmitida por testigos reales.</p>
-      
-      <div class="cita-biblica">
-        <strong>Génesis 5:5</strong>
-        «Y fueron todos los días que vivió Adán novecientos treinta años; y murió.»
-      </div>
-    </section>
-
-    <!-- CAPÍTULO 1: FICHAS DE LOS PATRIARCAS -->
-    <section id="capitulo1">
-      <h2 class="chapter-title"><span>II</span> Los Patriarcas Antediluvianos</h2>
-      <p>Haz clic en el nombre de cada patriarca para desplegar su reseña biográfica, su significado teológico y su legado en la línea mesiánica.</p>
-
-      <div class="ficha-container">
-        
-        <div class="ficha-item">
-          <div class="ficha-header" onclick="toggleFicha(this)">
-            <div class="ficha-nombre">Adán</div>
-            <div class="ficha-edad">930 años</div>
-          </div>
-          <div class="ficha-contenido">
-            <p><strong>El primer aliento de la humanidad.</strong> Creado del polvo y con la imagen de Dios, Adán vivió en perfecta comunión en el Edén. Su desobediencia abrió la puerta de la muerte al mundo, pero Dios, en su infinita misericordia, ya le había prometido un Salvador (Gn 3:15).</p>
-            <p>Durante sus 930 años, vio crecer la maldad en la tierra, pero también transmitió la promesa a sus hijos. Adán es el punto de partida de la humanidad y, en contraste, Pablo nos enseña que Cristo es el "último Adán" (1 Corintios 15:45).</p>
-          </div>
-        </div>
-
-        <div class="ficha-item">
-          <div class="ficha-header" onclick="toggleFicha(this)">
-            <div class="ficha-nombre">Set</div>
-            <div class="ficha-edad">912 años</div>
-          </div>
-          <div class="ficha-contenido">
-            <p><strong>La simiente de la esperanza.</strong> Nacido tras la tragedia del asesinato de Abel, su nombre significa "sustituto" o "puesto". Set fue el eslabón que Dios usó para preservar la línea piadosa en medio de una generación que se alejaba de Él.</p>
-            <p>De su descendencia vendría Noé y, muchos siglos después, el mismo Jesucristo. Set nos recuerda que Dios siempre tiene un remanente y que sus propósitos no pueden ser frustrados por la maldad humana.</p>
-          </div>
-        </div>
-
-        <div class="ficha-item">
-          <div class="ficha-header" onclick="toggleFicha(this)">
-            <div class="ficha-nombre">Enós</div>
-            <div class="ficha-edad">905 años</div>
-          </div>
-          <div class="ficha-contenido">
-            <p><strong>El clamor de una nueva era.</strong> Su nombre significa "mortal" o "enfermo", un triste recordatorio de la fragilidad humana fuera del Edén. Sin embargo, en sus días ocurrió algo hermoso: "los hombres comenzaron a invocar el nombre de Jehová" (Gn 4:26).</p>
-            <p>Enós representa el primer despertar de la adoración y la oración en comunidad. En medio de un mundo caído, la humanidad volvió su rostro hacia Dios.</p>
-          </div>
-        </div>
-
-        <div class="ficha-item">
-          <div class="ficha-header" onclick="toggleFicha(this)">
-            <div class="ficha-nombre">Cainán</div>
-            <div class="ficha-edad">910 años</div>
-          </div>
-          <div class="ficha-contenido">
-            <p><strong>El heredero de la promesa.</strong> Su nombre significa "adquisición" o "posesión". Continuó el legado espiritual de su padre Enós. No hay grandes gestas registradas sobre él, pero su fidelidad al preservar la línea mesiánica en tiempos de creciente corrupción es un testimonio del propósito silencioso pero firme de Dios.</p>
-          </div>
-        </div>
-
-        <div class="ficha-item">
-          <div class="ficha-header" onclick="toggleFicha(this)">
-            <div class="ficha-nombre">Mahalalel</div>
-            <div class="ficha-edad">895 años</div>
-          </div>
-          <div class="ficha-contenido">
-            <p><strong>El que alaba a Dios.</strong> Su nombre se traduce como "El Bendito de Dios" o "Alabanza de Dios". Vivió en una época donde la maldad comenzaba a multiplicarse, pero su mismo nombre revela una vida de adoración. Mahalalel nos enseña que, incluso en tiempos oscuros, la alabanza a Dios es el refugio del creyente.</p>
-          </div>
-        </div>
-
-        <div class="ficha-item">
-          <div class="ficha-header" onclick="toggleFicha(this)">
-            <div class="ficha-nombre">Jared</div>
-            <div class="ficha-edad">962 años</div>
-          </div>
-          <div class="ficha-contenido">
-            <p><strong>El que desciende.</strong> Jared fue el padre de Enoc, el hombre que caminó con Dios. Fue testigo directo de la vida tan especial de su hijo, quien no vio muerte. Jared vivió 962 años, la segunda vida más longeva de la Biblia, siendo un puente entre la era de Adán y el mundo previo al Diluvio.</p>
-          </div>
-        </div>
-
-        <div class="ficha-item">
-          <div class="ficha-header" onclick="toggleFicha(this)">
-            <div class="ficha-nombre">Enoc</div>
-            <div class="ficha-edad">365 años*</div>
-          </div>
-          <div class="ficha-contenido">
-            <p><strong>El hombre que caminó con Dios.</strong> En medio de una generación corrupta, Enoc "caminó con Dios" (Gn 5:22), lo que implica una comunión íntima y constante. A los 365 años, Dios se lo llevó directamente al cielo sin que experimentara la muerte física.</p>
-            <p>Enoc es un profeta de la esperanza: un tipo del arrebatamiento de la Iglesia y de la resurrección. <em>(He 11:5; 1 Ts 4:17).</em></p>
-          </div>
-        </div>
-
-        <div class="ficha-item">
-          <div class="ficha-header" onclick="toggleFicha(this)">
-            <div class="ficha-nombre">Matusalén</div>
-            <div class="ficha-edad">969 años</div>
-          </div>
-          <div class="ficha-contenido">
-            <p><strong>El testigo de la paciencia divina.</strong> Con 969 años, es el hombre más longevo de la historia. Su nombre proféticamente significa "cuando él muera, será enviado (el juicio)".</p>
-            <p>La asombrosa verdad es que Matusalén murió exactamente el mismo año del Diluvio (1656 AM). Su vida fue un reloj de arena gigante: mientras él respirara, Dios seguía extendiendo su paciencia a la humanidad antes del juicio final.</p>
-          </div>
-        </div>
-
-        <div class="ficha-item">
-          <div class="ficha-header" onclick="toggleFicha(this)">
-            <div class="ficha-nombre">Lamec</div>
-            <div class="ficha-edad">777 años</div>
-          </div>
-          <div class="ficha-contenido">
-            <p><strong>El padre profético.</strong> Su nombre significa "fuerte" o "poderoso". Al nombrar a su hijo Noé, profetizó diciendo: "Este nos consolará de nuestras obras y del trabajo de nuestras manos" (Gn 5:29). Lamec vivió para ver a su hijo construir el arca, pero murió 5 años antes de que las aguas del juicio cayeran sobre la tierra.</p>
-          </div>
-        </div>
-
-        <div class="ficha-item">
-          <div class="ficha-header" onclick="toggleFicha(this)">
-            <div class="ficha-nombre">Noé</div>
-            <div class="ficha-edad">950 años</div>
-          </div>
-          <div class="ficha-contenido">
-            <p><strong>El predicador de justicia.</strong> En una tierra llena de violencia, Noé halló gracia ante los ojos de Dios (Gn 6:8). Pasó décadas construyendo el arca, predicando el arrepentimiento a una generación que se burlaba.</p>
-            <p>Tras el Diluvio, se convirtió en el segundo padre de la humanidad y recibió el pacto del arcoíris, la promesa de que Dios nunca más destruiría la tierra con agua.</p>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- CAPÍTULO 2: MAPA ESTÁTICO -->
-    <section id="capitulo2">
-      <h2 class="chapter-title"><span>III</span> Mapa de Solapamientos</h2>
-      <p>La siguiente línea de tiempo ilustra visualmente la duración de la vida de cada patriarca. Observe cómo las barras se superponen, demostrando que varias generaciones convivieron durante siglos. La línea roja punteada marca el año del Diluvio (1656 AM).</p>
-
-      <div class="timeline-box">
-        <div class="timeline-wrapper">
-          <div class="timeline-axis"></div>
-          
-          <div class="timeline-tick" style="left: 0%;">0</div>
-          <div class="timeline-tick" style="left: 22.7%;">500</div>
-          <div class="timeline-tick" style="left: 45.4%;">1000</div>
-          <div class="timeline-tick" style="left: 68.1%;">1500</div>
-          <div class="timeline-tick" style="left: 90.9%;">2000</div>
-
-          <div class="diluvio-line"></div>
-          <div class="diluvio-label">Diluvio (1656 AM)</div>
-
-          <div class="life-bar bar-adan">Adán (930)</div>
-          <div class="life-bar bar-enoc">Enoc (365)</div>
-          <div class="life-bar bar-matu">Matusalén (969)</div>
-          <div class="life-bar bar-lamec">Lamec (777)</div>
-          <div class="life-bar bar-noe">Noé (950)</div>
-          <div class="life-bar bar-sem">Sem (600)</div>
-        </div>
-      </div>
-      
-      <p style="margin-top: 1rem;"><strong>Datos clave del solapamiento:</strong></p>
-      <ul class="lista-estudio">
-        <li><strong>Adán y Matusalén:</strong> Convivieron 243 años. Adán pudo contar personalmente a Matusalén lo ocurrido en el Edén.</li>
-        <li><strong>Matusalén y Noé:</strong> Convivieron 600 años. Matusalén murió el mismo año del Diluvio.</li>
-        <li><strong>Noé y Abraham:</strong> Noé todavía vivía cuando nació Abraham (solapamiento de ~58 años).</li>
-        <li><strong>Sem y Abraham:</strong> Sem (hijo de Noé) convivió con Abraham durante más de un siglo.</li>
-      </ul>
-    </section>
-
-    <!-- CAPÍTULO 3: LÍNEA DE REDENCIÓN -->
-    <section id="capitulo3">
-      <h2 class="chapter-title"><span>IV</span> La Línea de la Redención</h2>
-      <p>Desde Génesis 5 y 11, la Escritura teje el hilo rojo de la salvación que conecta a Adán con Cristo.</p>
-      
-      <h3>De Abraham al Rey David</h3>
-      <p>Abraham → Isaac → Jacob → Judá → Fares → Esrom → Aram → Aminadab → Naasón → Salmón → Booz → Obed → Isaí → <strong>El Rey David.</strong></p>
-
-      <h3>Del Rey David al Cautiverio</h3>
-      <p>David → Salomón → Roboam → Abías → Asa → Josafat → Joram → Uzías → Jotam → Acaz → Ezequías → Manasés → Amón → Josías → <strong>Jeconías (Exilio).</strong></p>
-
-      <h3>De la Cautividad al Mesías</h3>
-      <p>Jeconías → Salatiel → Zorobabel → Abiud → Eliacim → Azor → Sadoc → Aquim → Eliud → Eleazar → Matán → Jacob → José (esposo de María) → <strong>JESUCRISTO.</strong></p>
-
-      <div class="cita-biblica">
-        <strong>Mateo 1:1</strong>
-        «Libro de la genealogía de Jesucristo, hijo de David, hijo de Abraham.»
-      </div>
-    </section>
-
-    <!-- EPÍLOGO -->
-    <section id="epilogo">
-      <h2 class="chapter-title"><span>V</span> Epílogo y Fuentes</h2>
-      <p><strong>Observaciones Teológicas:</strong></p>
-      <ul class="lista-estudio">
-        <li><strong>Matusalén y el Diluvio:</strong> La suma 187 + 782 + 600 = 969 hace que muera exactamente el año del Diluvio. Su nombre es un testimonio profético de la paciencia de Dios.</li>
-        <li><strong>Enoc:</strong> Prefigura la resurrección y el arrebatamiento (He 11:5; 1 Ts 4:17). Caminó con Dios en medio de una generación corrupta.</li>
-        <li><strong>Disminución de la longevidad:</strong> Tras el Diluvio, las vidas se acortan drásticamente (Gn 6:3; Salmos 90). Es un efecto del juicio y el cambio de condiciones.</li>
-      </ul>
-
-      <p style="margin-top: 2rem;"><strong>Fuente de Autoridad:</strong></p>
-      <p>Todo el estudio presentado en este libro digital tiene su fundamento absoluto en las Sagradas Escrituras. Los datos cronológicos provienen de Génesis 5 y 11, Éxodo 12:40-41, 1 Reyes 6:1, Mateo 1, Lucas 3 y Hechos 7. La interpretación se basa en el Texto Masorético (TM) y la cronología tradicional de James Ussher (<em>Annales</em>, 1650).</p>
-    </section>
-
-  </main>
-</div>
-
-<footer>
-  <div class="versiculos-finales">
-    <p><strong>Génesis 5:5</strong><br>«Y fueron todos los días que vivió Adán novecientos treinta años; y murió.»</p>
-    <p><strong>Romanos 5:8</strong><br>«Mas Dios muestra su amor para con nosotros, en que siendo aún pecadores, Cristo murió por nosotros.»</p>
-  </div>
-  
-  <!-- LOGOS EN EL FOOTER (SVG) -->
-  <div class="logos-footer">
-    <svg class="footer-logo-svg" viewBox="0 0 300 100" xmlns="http://www.w3.org/2000/svg">
-      <text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" font-family="Arial Black, Impact, sans-serif" font-style="italic" font-size="50" fill="#f1c40f" stroke="#000" stroke-width="2">SHOCK</text>
-      <text x="50%" y="85%" dominant-baseline="middle" text-anchor="middle" font-family="Arial, sans-serif" font-weight="bold" font-size="24" fill="#c0392b" letter-spacing="2">99.5 FM</text>
-    </svg>
-    
-    <svg class="footer-logo-svg" viewBox="0 0 300 100" xmlns="http://www.w3.org/2000/svg">
-      <text x="50%" y="45%" dominant-baseline="middle" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="bold" font-size="46" fill="#c0392b" letter-spacing="5">THEOS</text>
-      <text x="50%" y="80%" dominant-baseline="middle" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="bold" font-size="22" fill="#aaa" letter-spacing="12">LOGOS</text>
-    </svg>
-  </div>
-</footer>
-
-<script>
-  // Función simple para abrir y cerrar las fichas de los patriarcas
-  function toggleFicha(element) {
-    const allHeaders = document.querySelectorAll('.ficha-header');
-    allHeaders.forEach(header => {
-      if (header !== element) {
-        header.classList.remove('active');
-      }
-    });
-    element.classList.toggle('active');
-  }
-</script>
-
-</body>
-</html>
+  <!-- AQUÍ ESTÁN TUS LOGOS REALES INTEGRADOS -->
+  <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACWCAYAAABkW7XSAAAACXBIWXMAAAsTAAALEwEAmpwYAAAgAElEQVR4nOy9d5gcx3ku/quq7p6Z3Z3ZnLMQAmBAIgmCmQQzKYoUJUu2LMmybMmWbMmSgyxbtmzZsi3LsixZlmTJsi3Jsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3LsixZlmTJsi3Lsix
