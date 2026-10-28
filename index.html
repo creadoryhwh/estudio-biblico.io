@@ -10,6 +10,7 @@
     --rojo-vino:#7a201c;
     --dorado:#b8860b;
     --borde-oro:#c9a96a;
+    --azul-cielo: #87CEEB; /* Color azul cielo principal */
   }
   
   *{box-sizing:border-box; margin:0; padding:0;}
@@ -18,7 +19,8 @@
     font-family:'Georgia', 'Times New Roman', serif; 
     color:var(--tinta); 
     line-height:1.8;
-    font-size: 18px;
+    /* Tipografía fluida: se adapta del celular a pantallas grandes */
+    font-size: clamp(16px, 1.2vw + 10px, 19px); 
     
     /* FONDO DE PERGAMINO */
     background-image: url('pergamino.jpg'); 
@@ -30,114 +32,130 @@
   
   /* HEADER (Logos) */
   header{
-    background:rgba(26, 26, 26, 0.95); color:#fff; padding:0.5rem 2rem; 
-    display:flex; justify-content:space-between; align-items:center; 
-    position:sticky; top:0; z-index:100;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.4);
-    border-bottom: 2px solid var(--dorado);
-    height: 85px;
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); /* Degradado azul cielo */
+    padding: 0.8rem 2rem; 
+    display: flex; justify-content: space-between; align-items: center; 
+    position: sticky; top: 0; z-index: 100;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    border-bottom: 3px solid #ffffff;
+    min-height: 85px;
+    flex-wrap: wrap; /* Permite que los logos bajen si no caben */
+    gap: 10px;
   }
 
-  /* =========================================
-     DISEÑO DE LOGOS CON IMÁGENES
-     ========================================= */
+  /* DISEÑO DE LOGOS CON IMÁGENES */
   .logo-shock-img {
-    height: 65px; /* Ajusta este valor si tu logo es muy alto o bajo */
+    height: clamp(45px, 6vw, 75px); /* Se adapta al tamaño de pantalla */
     width: auto;
     object-fit: contain;
-    filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.5));
+    filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.3)); /* Sombra más suave para el azul */
   }
 
   .logo-theos-img {
-    height: 55px; /* Ajusta este valor según tu logo de THEOS */
+    height: clamp(40px, 5vw, 65px);
     width: auto;
     object-fit: contain;
-    filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.5));
+    filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.3));
   }
 
   /* LAYOUT DEL LIBRO */
   .layout{
-    display:grid; 
-    grid-template-columns:280px 1fr; 
-    max-width:1300px; 
+    display: grid; 
+    grid-template-columns: 280px 1fr; 
+    max-width: 1400px; 
     margin: 2rem auto; 
-    background: rgba(253, 251, 247, 0.9); 
-    box-shadow: 0 0 30px rgba(0,0,0,0.3); 
+    background: rgba(253, 251, 247, 0.95); 
+    box-shadow: 0 0 30px rgba(0,0,0,0.15); 
     border: 1px solid var(--borde-oro);
-    border-radius: 4px;
+    border-radius: 8px;
     min-height: 90vh;
+    overflow: hidden; /* Para que los bordes redondeados funcionen */
   }
   
   /* INDICE */
   aside{
-    background: rgba(245, 235, 215, 0.9); 
-    border-right:2px solid var(--borde-oro); 
-    padding:3rem 1.5rem; position:sticky; top:85px; 
-    height:calc(100vh - 85px); overflow-y:auto;
+    background: rgba(245, 235, 215, 0.95); 
+    border-right: 2px solid var(--borde-oro); 
+    padding: 2rem 1.5rem; 
+    position: sticky; 
+    top: 85px; 
+    height: calc(100vh - 85px); 
+    overflow-y: auto;
   }
-  aside h2{font-size:1.1rem; color:var(--rojo-vino); text-transform:uppercase; letter-spacing:2px; border-bottom:2px solid var(--dorado); padding-bottom:.5rem; margin-bottom:1.5rem; font-family:Arial, sans-serif;}
+  aside h2{
+    font-size: 1.1rem; color: var(--rojo-vino); text-transform: uppercase; 
+    letter-spacing: 2px; border-bottom: 2px solid var(--dorado); 
+    padding-bottom: .5rem; margin-bottom: 1.5rem; font-family: Arial, sans-serif;
+  }
   aside nav ul{list-style:none;}
-  aside nav a{display:block; color:var(--tinta); text-decoration:none; padding:.6rem 0; font-size:1rem; transition: 0.2s; border-bottom: 1px dotted #c0a080; font-family: Georgia, serif;}
-  aside nav a:hover{color:var(--rojo-vino); padding-left: 5px; font-weight: bold;}
-  aside nav .num{font-family: Arial, sans-serif; font-weight: bold; color:var(--rojo-vino); margin-right:.5rem;}
+  aside nav a{
+    display: block; color: var(--tinta); text-decoration: none; 
+    padding: .6rem 0; font-size: 1rem; transition: 0.2s; 
+    border-bottom: 1px dotted #c0a080; font-family: Georgia, serif;
+  }
+  aside nav a:hover{color: var(--rojo-vino); padding-left: 5px; font-weight: bold;}
+  aside nav .num{font-family: Arial, sans-serif; font-weight: bold; color: var(--rojo-vino); margin-right: .5rem;}
 
   /* CONTENIDO PRINCIPAL */
-  main{padding:4rem 5rem; scroll-behavior: smooth;}
-  section{margin-bottom:5rem; scroll-margin-top:100px;}
+  main{padding: clamp(2rem, 5vw, 4rem) clamp(1rem, 4vw, 5rem); scroll-behavior: smooth;}
+  section{margin-bottom: 4rem; scroll-margin-top: 100px;}
   
   .chapter-title{
-    font-size:2.2rem; color:var(--rojo-vino); 
-    margin-bottom:1.5rem; padding-bottom: 0.5rem;
+    font-size: clamp(1.5rem, 3vw, 2.2rem); color: var(--rojo-vino); 
+    margin-bottom: 1.5rem; padding-bottom: 0.5rem;
     border-bottom: 3px double var(--rojo-vino);
     display: flex; align-items: center; gap: 15px;
     font-family: 'Georgia', serif;
     text-shadow: 1px 1px 0 rgba(255,255,255,0.5);
+    flex-wrap: wrap; /* Para que el título baje si es muy largo */
   }
   .chapter-title span{
-    background:var(--rojo-vino); color:#fdfbf7; font-size:1.2rem; 
-    padding:.2rem .8rem; border-radius:4px; font-family:Arial, sans-serif;
+    background: var(--rojo-vino); color: #fdfbf7; font-size: 1.2rem; 
+    padding: .2rem .8rem; border-radius: 4px; font-family: Arial, sans-serif;
   }
   p { margin-bottom: 1.2rem; text-align: justify; }
-  h3 { font-size: 1.5rem; color:var(--rojo-vino); margin: 2rem 0 1rem 0; font-style: italic;}
+  h3 { font-size: clamp(1.3rem, 2vw, 1.5rem); color: var(--rojo-vino); margin: 2rem 0 1rem 0; font-style: italic;}
 
   /* FICHAS (Acordeón) */
   .ficha-container {
-    background: rgba(255, 255, 255, 0.6);
+    background: rgba(255, 255, 255, 0.7);
     border: 1px solid var(--borde-oro);
     border-radius: 8px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.05);
     margin-bottom: 3rem;
+    overflow: hidden;
   }
   .ficha-item { border-bottom: 1px solid var(--borde-oro); }
   .ficha-item:last-child { border-bottom: none; }
   .ficha-header {
     display: flex; justify-content: space-between; align-items: center;
     padding: 1.2rem 1.5rem; cursor: pointer;
-    background: rgba(240, 230, 210, 0.6); transition: background 0.3s;
+    background: rgba(240, 230, 210, 0.8); transition: background 0.3s;
+    flex-wrap: wrap; gap: 10px;
   }
-  .ficha-header:hover { background: rgba(230, 215, 190, 0.9); }
-  .ficha-header.active { background: rgba(255, 255, 255, 0.9); border-bottom: 1px dashed var(--borde-oro); }
-  .ficha-nombre { font-size: 1.3rem; font-weight: bold; color: var(--rojo-vino); display: flex; align-items: center; gap: 10px; }
+  .ficha-header:hover { background: rgba(230, 215, 190, 1); }
+  .ficha-header.active { background: rgba(255, 255, 255, 1); border-bottom: 1px dashed var(--borde-oro); }
+  .ficha-nombre { font-size: clamp(1.1rem, 2vw, 1.3rem); font-weight: bold; color: var(--rojo-vino); display: flex; align-items: center; gap: 10px; }
   .ficha-nombre::before { content: '✝'; color: var(--dorado); font-size: 1.2rem; }
   .ficha-edad { font-family: Arial, sans-serif; font-weight: bold; color: #fdfbf7; background: var(--rojo-vino); padding: 0.2rem 0.8rem; border-radius: 20px; font-size: 0.85rem; }
-  .ficha-contenido { display: none; padding: 1.5rem 2rem; background: rgba(255, 252, 245, 0.8); font-size: 1.05rem; line-height: 1.8; }
+  .ficha-contenido { display: none; padding: 1.5rem; background: rgba(255, 252, 245, 1); font-size: 1rem; line-height: 1.8; }
   .ficha-header.active + .ficha-contenido { display: block; animation: fadeIn 0.4s ease-in-out; }
   .ficha-contenido strong { color: var(--rojo-vino); }
   @keyframes fadeIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
 
   /* CITAS Y LISTAS */
-  .cita-biblica { background: rgba(235, 225, 205, 0.8); border-left: 4px solid var(--rojo-vino); padding: 1.2rem 1.5rem; margin: 1.5rem 0; font-style: italic; color: var(--tinta); font-size: 1.05rem; border-radius: 0 8px 8px 0; }
+  .cita-biblica { background: rgba(235, 225, 205, 0.9); border-left: 4px solid var(--rojo-vino); padding: 1.2rem 1.5rem; margin: 1.5rem 0; font-style: italic; color: var(--tinta); font-size: 1.05rem; border-radius: 0 8px 8px 0; }
   .cita-biblica strong { display: block; font-style: normal; color: var(--rojo-vino); font-family: Arial; margin-bottom: 0.5rem; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px;}
   ul.lista-estudio { margin-left: 1.5rem; margin-bottom: 1.5rem; }
   ul.lista-estudio li { margin-bottom: 0.8rem; }
 
   /* LÍNEA DE TIEMPO RESPONSIVA */
   .timeline-box { 
-    background: rgba(255, 255, 255, 0.85); 
+    background: rgba(255, 255, 255, 0.95); 
     padding: 2rem 1rem; 
     border: 1px solid var(--borde-oro); 
     border-radius: 8px; 
-    overflow-x: auto; 
+    overflow-x: auto; /* Deslizar en celular */
     -webkit-overflow-scrolling: touch; 
     margin-bottom: 2rem;
   }
@@ -157,53 +175,75 @@
   .diluvio-label { position: absolute; top: -25px; left: 75.2%; transform: translateX(-50%); background: var(--rojo-vino); color: #fff; padding: 2px 8px; font-size: 0.75rem; border-radius: 4px; font-weight: bold; white-space: nowrap;}
 
   /* FOOTER */
-  footer{background:rgba(26, 26, 26, 0.95); color:#ccc; padding:3rem 2rem; text-align:center; border-top:4px solid var(--dorado); margin-top: 3rem;}
-  footer .versiculos-finales {max-width: 800px; margin: 0 auto 2rem auto; font-style: italic; color: #e8dcc0; font-size: 1.1rem;}
+  footer{
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); /* Mismo azul cielo */
+    color: #ffffff; padding: 3rem 2rem; text-align: center; 
+    border-top: 4px solid #ffffff; 
+    margin-top: 3rem;
+  }
+  footer .versiculos-finales {max-width: 800px; margin: 0 auto 2rem auto; font-style: italic; color: #ffffff; font-size: 1.1rem; text-shadow: 1px 1px 2px rgba(0,0,0,0.2);}
   footer .versiculos-finales p {margin-bottom: 1.5rem;}
-  footer .versiculos-finales strong {color: var(--dorado); font-style: normal; display: block; font-family: Arial; font-size: 0.9rem; text-transform: uppercase; margin-bottom: 5px;}
+  footer .versiculos-finales strong {color: #003366; font-style: normal; display: block; font-family: Arial; font-size: 0.9rem; text-transform: uppercase; margin-bottom: 5px; text-shadow: none;}
   
-  .logos-footer{display:flex; justify-content:center; align-items:center; gap:3rem; margin-top: 2rem;}
+  .logos-footer{display: flex; justify-content: center; align-items: center; gap: 3rem; margin-top: 2rem; flex-wrap: wrap;}
 
   /* Ajuste para los logos en el footer */
   .logos-footer .logo-shock-img {
-    height: 75px;
+    height: clamp(50px, 6vw, 80px);
   }
   .logos-footer .logo-theos-img {
-    height: 65px;
+    height: clamp(45px, 5.5vw, 70px);
   }
 
   /* =========================================
-     DISEÑO RESPONSIVO (Móviles y Tablets)
+     DISEÑO RESPONSIVO (Tablets y Móviles)
      ========================================= */
   @media(max-width: 900px){
-    body { font-size: 16px; }
-    .layout{grid-template-columns:1fr; margin: 0; border-radius: 0; border: none; box-shadow: none; background: rgba(253, 251, 247, 0.95);}
+    header { 
+      padding: 0.8rem 1rem; 
+      flex-direction: column; /* Logos uno arriba del otro o centrados */
+      gap: 15px; 
+      height: auto; 
+      justify-content: center;
+    }
     
-    header { padding: 0.5rem 1rem; flex-direction: column; gap: 10px; height: auto; }
-    
-    /* Ajuste de logos en móvil */
-    .logo-shock-img { height: 45px; }
-    .logo-theos-img { height: 40px; }
-    .logos-footer .logo-shock-img { height: 60px; }
-    .logos-footer .logo-theos-img { height: 50px; }
+    .layout{
+      grid-template-columns: 1fr; /* Una sola columna */
+      margin: 1rem; /* Un poco de margen para que no pegue a los bordes */
+      border-radius: 8px;
+      min-height: auto;
+    }
     
     aside {
       position: relative; top: 0; height: auto; 
       border-right: none; border-bottom: 2px solid var(--borde-oro); 
-      padding: 1rem; text-align: center;
+      padding: 1.5rem 1rem; text-align: center;
     }
-    aside h2 { margin-bottom: 0.5rem; font-size: 0.9rem; }
-    aside nav ul { display: flex; flex-wrap: wrap; justify-content: center; gap: 5px; }
-    aside nav a { padding: 0.4rem 0.8rem; border: 1px solid var(--borde-oro); border-radius: 20px; font-size: 0.85rem; background: rgba(255,255,255,0.5); }
-    aside nav .num { margin-right: 3px; }
+    aside h2 { margin-bottom: 1rem; font-size: 0.9rem; }
+    aside nav ul { 
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; 
+    }
+    aside nav a { 
+      padding: 0.5rem 1rem; border: 1px solid var(--borde-oro); 
+      border-radius: 20px; font-size: 0.9rem; background: rgba(255,255,255,0.6); 
+    }
+    aside nav a:hover { padding-left: 1rem; background: #fff;} /* Evitar salto raro */
+    aside nav .num { margin-right: 5px; }
     
     main { padding: 2rem 1rem; }
-    .chapter-title { font-size: 1.5rem; flex-direction: column; align-items: flex-start; gap: 5px; }
     
-    .ficha-header { padding: 1rem; flex-direction: column; align-items: flex-start; gap: 5px; }
+    .ficha-header { padding: 1rem; }
     .ficha-contenido { padding: 1rem; font-size: 0.95rem; }
     
     .logos-footer { flex-direction: column; gap: 1.5rem; }
+  }
+
+  /* Ajustes extra para celulares muy pequeños */
+  @media(max-width: 480px){
+    .chapter-title { justify-content: center; text-align: center; }
+    p { text-align: left; } /* A veces el justificado en celular se ve mal */
+    .ficha-header { flex-direction: column; align-items: flex-start; }
+    .ficha-edad { align-self: flex-start; margin-top: 5px; }
   }
 </style>
 </head>
