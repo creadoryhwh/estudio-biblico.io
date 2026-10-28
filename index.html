@@ -39,68 +39,20 @@
   }
 
   /* =========================================
-     DISEÑO DE LOGOS CON CSS (Sin imágenes)
+     DISEÑO DE LOGOS CON IMÁGENES
      ========================================= */
-  
-  /* LOGO SHOCK */
-  .logo-shock-css {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .shock-text {
-    font-family: 'Arial Black', Impact, sans-serif;
-    font-style: italic;
-    font-size: 2.2rem;
-    font-weight: 900;
-    color: #ff0000;
-    text-shadow: 
-      2px 2px 0px #ffcc00,
-      3px 3px 0px #000,
-      4px 4px 10px rgba(0,0,0,0.8);
-    letter-spacing: -1px;
-  }
-  .shock-fm {
-    display: flex;
-    flex-direction: column;
-    line-height: 1;
-  }
-  .shock-fm span:first-child {
-    font-family: Arial, sans-serif;
-    font-weight: bold;
-    font-size: 1.2rem;
-    color: #ffcc00;
-    text-shadow: 1px 1px 2px #000;
-  }
-  .shock-fm span:last-child {
-    font-family: Arial, sans-serif;
-    font-size: 0.6rem;
-    color: #ccc;
-    letter-spacing: 1px;
+  .logo-shock-img {
+    height: 65px; /* Ajusta este valor si tu logo es muy alto o bajo */
+    width: auto;
+    object-fit: contain;
+    filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.5));
   }
 
-  /* LOGO THEOS */
-  .logo-theos-css {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    line-height: 1;
-  }
-  .theos-text {
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: bold;
-    font-size: 2rem;
-    color: #e74c3c;
-    letter-spacing: 2px;
-    text-shadow: 1px 1px 0px #000;
-  }
-  .logos-text {
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: bold;
-    font-size: 0.8rem;
-    color: #999;
-    letter-spacing: 10px;
-    margin-top: 3px;
+  .logo-theos-img {
+    height: 55px; /* Ajusta este valor según tu logo de THEOS */
+    width: auto;
+    object-fit: contain;
+    filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.5));
   }
 
   /* LAYOUT DEL LIBRO */
@@ -212,6 +164,14 @@
   
   .logos-footer{display:flex; justify-content:center; align-items:center; gap:3rem; margin-top: 2rem;}
 
+  /* Ajuste para los logos en el footer */
+  .logos-footer .logo-shock-img {
+    height: 75px;
+  }
+  .logos-footer .logo-theos-img {
+    height: 65px;
+  }
+
   /* =========================================
      DISEÑO RESPONSIVO (Móviles y Tablets)
      ========================================= */
@@ -220,8 +180,12 @@
     .layout{grid-template-columns:1fr; margin: 0; border-radius: 0; border: none; box-shadow: none; background: rgba(253, 251, 247, 0.95);}
     
     header { padding: 0.5rem 1rem; flex-direction: column; gap: 10px; height: auto; }
-    .shock-text { font-size: 1.8rem; }
-    .theos-text { font-size: 1.6rem; }
+    
+    /* Ajuste de logos en móvil */
+    .logo-shock-img { height: 45px; }
+    .logo-theos-img { height: 40px; }
+    .logos-footer .logo-shock-img { height: 60px; }
+    .logos-footer .logo-theos-img { height: 50px; }
     
     aside {
       position: relative; top: 0; height: auto; 
@@ -246,20 +210,11 @@
 <body>
 
 <header>
-  <!-- LOGO SHOCK 99.5 FM (Hecho con CSS) -->
-  <div class="logo-shock-css">
-    <span class="shock-text">SHOCK</span>
-    <div class="shock-fm">
-      <span>99.5</span>
-      <span>FM</span>
-    </div>
-  </div>
+  <!-- LOGO SHOCK 99.5 FM -->
+  <img src="logo-shock.png" alt="Shock 99.5 FM" class="logo-shock-img">
   
-  <!-- LOGO THEOS LOGOS (Hecho con CSS) -->
-  <div class="logo-theos-css">
-    <span class="theos-text">THEOS</span>
-    <span class="logos-text">LOGOS</span>
-  </div>
+  <!-- LOGO THEOS LOGOS -->
+  <img src="logo-theos.png" alt="Theos Logos" class="logo-theos-img">
 </header>
 
 <div class="layout">
@@ -488,20 +443,10 @@
     <p><strong>Romanos 5:8</strong><br>«Mas Dios muestra su amor para con nosotros, en que siendo aún pecadores, Cristo murió por nosotros.»</p>
   </div>
   
-  <!-- LOGOS EN EL FOOTER (CSS) -->
+  <!-- LOGOS EN EL FOOTER -->
   <div class="logos-footer">
-    <div class="logo-shock-css">
-      <span class="shock-text">SHOCK</span>
-      <div class="shock-fm">
-        <span>99.5</span>
-        <span>FM</span>
-      </div>
-    </div>
-    
-    <div class="logo-theos-css">
-      <span class="theos-text">THEOS</span>
-      <span class="logos-text">LOGOS</span>
-    </div>
+    <img src="logo-shock.png" alt="Shock 99.5 FM" class="logo-shock-img">
+    <img src="logo-theos.png" alt="Theos Logos" class="logo-theos-img">
   </div>
 </footer>
 
@@ -519,4 +464,4 @@
 </script>
 
 </body>
-</html> 
+</html>
