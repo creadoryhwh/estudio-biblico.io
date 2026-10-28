@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Libro de Estudio: Genealogía de Génesis 5 y 11</title>
 <style>
   :root{
@@ -10,17 +10,22 @@
     --rojo-vino:#7a201c;
     --dorado:#b8860b;
     --borde-oro:#c9a96a;
-    --azul-cielo: #87CEEB; /* Color azul cielo principal */
   }
   
   *{box-sizing:border-box; margin:0; padding:0;}
   
+  html, body {
+    /* Evita que la página se desplace hacia los lados en celulares */
+    overflow-x: hidden; 
+    width: 100%;
+  }
+
   body{
     font-family:'Georgia', 'Times New Roman', serif; 
     color:var(--tinta); 
     line-height:1.8;
-    /* Tipografía fluida: se adapta del celular a pantallas grandes */
-    font-size: clamp(16px, 1.2vw + 10px, 19px); 
+    /* Tipografía fluida: se adapta al tamaño de la pantalla sin límites estrictos */
+    font-size: clamp(16px, 1.2vw + 8px, 22px); 
     
     /* FONDO DE PERGAMINO */
     background-image: url('pergamino.jpg'); 
@@ -32,44 +37,44 @@
   
   /* HEADER (Logos) */
   header{
-    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); /* Degradado azul cielo */
-    padding: 0.8rem 2rem; 
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    padding: 1rem 2rem; 
     display: flex; justify-content: space-between; align-items: center; 
     position: sticky; top: 0; z-index: 100;
     box-shadow: 0 4px 15px rgba(0,0,0,0.2);
     border-bottom: 3px solid #ffffff;
     min-height: 85px;
-    flex-wrap: wrap; /* Permite que los logos bajen si no caben */
-    gap: 10px;
+    gap: 20px;
   }
 
   /* DISEÑO DE LOGOS CON IMÁGENES */
   .logo-shock-img {
-    height: clamp(45px, 6vw, 75px); /* Se adapta al tamaño de pantalla */
-    width: auto;
-    object-fit: contain;
-    filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.3)); /* Sombra más suave para el azul */
-  }
-
-  .logo-theos-img {
-    height: clamp(40px, 5vw, 65px);
+    height: clamp(45px, 5vw, 90px); /* Crece según la pantalla */
     width: auto;
     object-fit: contain;
     filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.3));
   }
 
-  /* LAYOUT DEL LIBRO */
+  .logo-theos-img {
+    height: clamp(40px, 4vw, 80px);
+    width: auto;
+    object-fit: contain;
+    filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.3));
+  }
+
+  /* LAYOUT DEL LIBRO (Sin límite de ancho) */
   .layout{
     display: grid; 
-    grid-template-columns: 280px 1fr; 
-    max-width: 1400px; 
+    grid-template-columns: 300px 1fr; /* El índice mide 300px, el resto es libre */
+    width: 96%; /* Ocupa casi toda la pantalla */
+    max-width: none; /* ¡SIN LÍMITES! */
     margin: 2rem auto; 
     background: rgba(253, 251, 247, 0.95); 
     box-shadow: 0 0 30px rgba(0,0,0,0.15); 
     border: 1px solid var(--borde-oro);
     border-radius: 8px;
     min-height: 90vh;
-    overflow: hidden; /* Para que los bordes redondeados funcionen */
+    overflow: hidden; 
   }
   
   /* INDICE */
@@ -83,38 +88,38 @@
     overflow-y: auto;
   }
   aside h2{
-    font-size: 1.1rem; color: var(--rojo-vino); text-transform: uppercase; 
+    font-size: 1.2rem; color: var(--rojo-vino); text-transform: uppercase; 
     letter-spacing: 2px; border-bottom: 2px solid var(--dorado); 
     padding-bottom: .5rem; margin-bottom: 1.5rem; font-family: Arial, sans-serif;
   }
   aside nav ul{list-style:none;}
   aside nav a{
     display: block; color: var(--tinta); text-decoration: none; 
-    padding: .6rem 0; font-size: 1rem; transition: 0.2s; 
+    padding: .8rem 0; font-size: 1.1rem; transition: 0.2s; 
     border-bottom: 1px dotted #c0a080; font-family: Georgia, serif;
   }
-  aside nav a:hover{color: var(--rojo-vino); padding-left: 5px; font-weight: bold;}
+  aside nav a:hover{color: var(--rojo-vino); padding-left: 10px; font-weight: bold;}
   aside nav .num{font-family: Arial, sans-serif; font-weight: bold; color: var(--rojo-vino); margin-right: .5rem;}
 
   /* CONTENIDO PRINCIPAL */
-  main{padding: clamp(2rem, 5vw, 4rem) clamp(1rem, 4vw, 5rem); scroll-behavior: smooth;}
-  section{margin-bottom: 4rem; scroll-margin-top: 100px;}
+  main{padding: 4rem 5rem; scroll-behavior: smooth; width: 100%; overflow: hidden;}
+  section{margin-bottom: 5rem; scroll-margin-top: 100px;}
   
   .chapter-title{
-    font-size: clamp(1.5rem, 3vw, 2.2rem); color: var(--rojo-vino); 
-    margin-bottom: 1.5rem; padding-bottom: 0.5rem;
+    font-size: clamp(1.8rem, 3vw, 2.8rem); color: var(--rojo-vino); 
+    margin-bottom: 2rem; padding-bottom: 0.8rem;
     border-bottom: 3px double var(--rojo-vino);
     display: flex; align-items: center; gap: 15px;
     font-family: 'Georgia', serif;
-    text-shadow: 1px 1px 0 rgba(255,255,255,0.5);
-    flex-wrap: wrap; /* Para que el título baje si es muy largo */
+    flex-wrap: wrap; 
   }
   .chapter-title span{
-    background: var(--rojo-vino); color: #fdfbf7; font-size: 1.2rem; 
-    padding: .2rem .8rem; border-radius: 4px; font-family: Arial, sans-serif;
+    background: var(--rojo-vino); color: #fdfbf7; font-size: 1.4rem; 
+    padding: .3rem 1rem; border-radius: 4px; font-family: Arial, sans-serif;
+    flex-shrink: 0;
   }
-  p { margin-bottom: 1.2rem; text-align: justify; }
-  h3 { font-size: clamp(1.3rem, 2vw, 1.5rem); color: var(--rojo-vino); margin: 2rem 0 1rem 0; font-style: italic;}
+  p { margin-bottom: 1.5rem; text-align: justify; word-wrap: break-word; }
+  h3 { font-size: clamp(1.4rem, 2vw, 1.8rem); color: var(--rojo-vino); margin: 2.5rem 0 1rem 0; font-style: italic;}
 
   /* FICHAS (Acordeón) */
   .ficha-container {
@@ -123,31 +128,31 @@
     border-radius: 8px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.05);
     margin-bottom: 3rem;
-    overflow: hidden;
+    width: 100%;
   }
   .ficha-item { border-bottom: 1px solid var(--borde-oro); }
   .ficha-item:last-child { border-bottom: none; }
   .ficha-header {
     display: flex; justify-content: space-between; align-items: center;
-    padding: 1.2rem 1.5rem; cursor: pointer;
+    padding: 1.5rem; cursor: pointer;
     background: rgba(240, 230, 210, 0.8); transition: background 0.3s;
     flex-wrap: wrap; gap: 10px;
   }
   .ficha-header:hover { background: rgba(230, 215, 190, 1); }
   .ficha-header.active { background: rgba(255, 255, 255, 1); border-bottom: 1px dashed var(--borde-oro); }
-  .ficha-nombre { font-size: clamp(1.1rem, 2vw, 1.3rem); font-weight: bold; color: var(--rojo-vino); display: flex; align-items: center; gap: 10px; }
-  .ficha-nombre::before { content: '✝'; color: var(--dorado); font-size: 1.2rem; }
-  .ficha-edad { font-family: Arial, sans-serif; font-weight: bold; color: #fdfbf7; background: var(--rojo-vino); padding: 0.2rem 0.8rem; border-radius: 20px; font-size: 0.85rem; }
-  .ficha-contenido { display: none; padding: 1.5rem; background: rgba(255, 252, 245, 1); font-size: 1rem; line-height: 1.8; }
+  .ficha-nombre { font-size: clamp(1.3rem, 2vw, 1.6rem); font-weight: bold; color: var(--rojo-vino); display: flex; align-items: center; gap: 10px; }
+  .ficha-nombre::before { content: '✝'; color: var(--dorado); font-size: 1.3rem; }
+  .ficha-edad { font-family: Arial, sans-serif; font-weight: bold; color: #fdfbf7; background: var(--rojo-vino); padding: 0.3rem 1rem; border-radius: 20px; font-size: 1rem; }
+  .ficha-contenido { display: none; padding: 2rem; background: rgba(255, 252, 245, 1); font-size: clamp(1rem, 1vw + 10px, 1.2rem); line-height: 1.8; word-wrap: break-word;}
   .ficha-header.active + .ficha-contenido { display: block; animation: fadeIn 0.4s ease-in-out; }
   .ficha-contenido strong { color: var(--rojo-vino); }
   @keyframes fadeIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
 
   /* CITAS Y LISTAS */
-  .cita-biblica { background: rgba(235, 225, 205, 0.9); border-left: 4px solid var(--rojo-vino); padding: 1.2rem 1.5rem; margin: 1.5rem 0; font-style: italic; color: var(--tinta); font-size: 1.05rem; border-radius: 0 8px 8px 0; }
-  .cita-biblica strong { display: block; font-style: normal; color: var(--rojo-vino); font-family: Arial; margin-bottom: 0.5rem; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px;}
-  ul.lista-estudio { margin-left: 1.5rem; margin-bottom: 1.5rem; }
-  ul.lista-estudio li { margin-bottom: 0.8rem; }
+  .cita-biblica { background: rgba(235, 225, 205, 0.9); border-left: 5px solid var(--rojo-vino); padding: 1.5rem; margin: 2rem 0; font-style: italic; color: var(--tinta); font-size: 1.15rem; border-radius: 0 8px 8px 0; word-wrap: break-word; }
+  .cita-biblica strong { display: block; font-style: normal; color: var(--rojo-vino); font-family: Arial; margin-bottom: 0.5rem; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 1px;}
+  ul.lista-estudio { margin-left: 2rem; margin-bottom: 2rem; }
+  ul.lista-estudio li { margin-bottom: 1rem; }
 
   /* LÍNEA DE TIEMPO RESPONSIVA */
   .timeline-box { 
@@ -155,16 +160,17 @@
     padding: 2rem 1rem; 
     border: 1px solid var(--borde-oro); 
     border-radius: 8px; 
-    overflow-x: auto; /* Deslizar en celular */
+    overflow-x: auto; 
     -webkit-overflow-scrolling: touch; 
     margin-bottom: 2rem;
+    width: 100%;
   }
-  .timeline-wrapper { position: relative; min-width: 700px; height: 300px; margin-top: 40px; padding-bottom: 30px;}
+  .timeline-wrapper { position: relative; min-width: 800px; height: 300px; margin-top: 40px; padding-bottom: 30px;}
   .timeline-axis { position: absolute; bottom: 0; left: 0; width: 100%; height: 3px; background: var(--tinta); }
   .timeline-axis::after { content: '>'; position: absolute; right: -10px; top: -12px; font-size: 20px; font-weight: bold; color: var(--tinta);}
-  .timeline-tick { position: absolute; bottom: -25px; transform: translateX(-50%); font-size: 0.85rem; font-weight: bold; font-family: Arial; color: var(--tinta);}
+  .timeline-tick { position: absolute; bottom: -25px; transform: translateX(-50%); font-size: 0.9rem; font-weight: bold; font-family: Arial; color: var(--tinta);}
   .timeline-tick::before { content: ''; position: absolute; bottom: 22px; left: 50%; width: 2px; height: 8px; background: var(--tinta); transform: translateX(-50%);}
-  .life-bar { position: absolute; height: 25px; border-radius: 4px; color: #fff; font-size: 0.75rem; font-weight: bold; display: flex; align-items: center; padding: 0 8px; font-family: Arial; box-shadow: 0 2px 4px rgba(0,0,0,0.2); white-space: nowrap;}
+  .life-bar { position: absolute; height: 25px; border-radius: 4px; color: #fff; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; padding: 0 8px; font-family: Arial; box-shadow: 0 2px 4px rgba(0,0,0,0.2); white-space: nowrap;}
   .bar-adan { top: 10px; background: #c0392b; left: 0%; width: 42.2%; }
   .bar-enoc { top: 50px; background: #8e44ad; left: 28.2%; width: 16.6%; }
   .bar-matu { top: 90px; background: #2980b9; left: 31.2%; width: 44.0%; }
@@ -172,46 +178,36 @@
   .bar-noe { top: 170px; background: #27ae60; left: 48.0%; width: 43.2%; }
   .bar-sem { top: 210px; background: #d35400; left: 70.8%; width: 27.3%; }
   .diluvio-line { position: absolute; top: 0; bottom: 0; left: 75.2%; width: 2px; border-left: 2px dashed var(--rojo-vino); }
-  .diluvio-label { position: absolute; top: -25px; left: 75.2%; transform: translateX(-50%); background: var(--rojo-vino); color: #fff; padding: 2px 8px; font-size: 0.75rem; border-radius: 4px; font-weight: bold; white-space: nowrap;}
+  .diluvio-label { position: absolute; top: -25px; left: 75.2%; transform: translateX(-50%); background: var(--rojo-vino); color: #fff; padding: 2px 8px; font-size: 0.8rem; border-radius: 4px; font-weight: bold; white-space: nowrap;}
 
   /* FOOTER */
   footer{
-    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); /* Mismo azul cielo */
-    color: #ffffff; padding: 3rem 2rem; text-align: center; 
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    color: #ffffff; padding: 4rem 2rem; text-align: center; 
     border-top: 4px solid #ffffff; 
-    margin-top: 3rem;
+    margin-top: 4rem;
+    width: 100%;
   }
-  footer .versiculos-finales {max-width: 800px; margin: 0 auto 2rem auto; font-style: italic; color: #ffffff; font-size: 1.1rem; text-shadow: 1px 1px 2px rgba(0,0,0,0.2);}
-  footer .versiculos-finales p {margin-bottom: 1.5rem;}
-  footer .versiculos-finales strong {color: #003366; font-style: normal; display: block; font-family: Arial; font-size: 0.9rem; text-transform: uppercase; margin-bottom: 5px; text-shadow: none;}
+  footer .versiculos-finales {max-width: 900px; margin: 0 auto 3rem auto; font-style: italic; color: #ffffff; font-size: 1.2rem; text-shadow: 1px 1px 2px rgba(0,0,0,0.2);}
+  footer .versiculos-finales p {margin-bottom: 2rem;}
+  footer .versiculos-finales strong {color: #003366; font-style: normal; display: block; font-family: Arial; font-size: 1rem; text-transform: uppercase; margin-bottom: 8px; text-shadow: none;}
   
-  .logos-footer{display: flex; justify-content: center; align-items: center; gap: 3rem; margin-top: 2rem; flex-wrap: wrap;}
+  .logos-footer{display: flex; justify-content: center; align-items: center; gap: 4rem; margin-top: 2rem; flex-wrap: wrap;}
 
-  /* Ajuste para los logos en el footer */
-  .logos-footer .logo-shock-img {
-    height: clamp(50px, 6vw, 80px);
-  }
-  .logos-footer .logo-theos-img {
-    height: clamp(45px, 5.5vw, 70px);
-  }
+  .logos-footer .logo-shock-img { height: clamp(50px, 6vw, 100px); }
+  .logos-footer .logo-theos-img { height: clamp(45px, 5.5vw, 90px); }
 
   /* =========================================
      DISEÑO RESPONSIVO (Tablets y Móviles)
      ========================================= */
-  @media(max-width: 900px){
-    header { 
-      padding: 0.8rem 1rem; 
-      flex-direction: column; /* Logos uno arriba del otro o centrados */
-      gap: 15px; 
-      height: auto; 
-      justify-content: center;
-    }
-    
+  @media(max-width: 1024px){
     .layout{
       grid-template-columns: 1fr; /* Una sola columna */
-      margin: 1rem; /* Un poco de margen para que no pegue a los bordes */
-      border-radius: 8px;
-      min-height: auto;
+      width: 100%; 
+      margin: 0; 
+      border-radius: 0;
+      border-left: none;
+      border-right: none;
     }
     
     aside {
@@ -219,29 +215,42 @@
       border-right: none; border-bottom: 2px solid var(--borde-oro); 
       padding: 1.5rem 1rem; text-align: center;
     }
-    aside h2 { margin-bottom: 1rem; font-size: 0.9rem; }
+    
+    /* El índice se desliza horizontalmente en tablets/celulares */
     aside nav ul { 
-      display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; 
+      display: flex; 
+      flex-wrap: nowrap; 
+      overflow-x: auto;  
+      gap: 10px; 
+      padding-bottom: 10px;
+      -webkit-overflow-scrolling: touch;
     }
+    aside nav ul::-webkit-scrollbar { display: none; }
+    
     aside nav a { 
-      padding: 0.5rem 1rem; border: 1px solid var(--borde-oro); 
-      border-radius: 20px; font-size: 0.9rem; background: rgba(255,255,255,0.6); 
+      padding: 0.6rem 1.2rem; border: 1px solid var(--borde-oro); 
+      border-radius: 20px; font-size: 1rem; background: rgba(255,255,255,0.8); 
+      white-space: nowrap; 
     }
-    aside nav a:hover { padding-left: 1rem; background: #fff;} /* Evitar salto raro */
-    aside nav .num { margin-right: 5px; }
     
-    main { padding: 2rem 1rem; }
-    
-    .ficha-header { padding: 1rem; }
-    .ficha-contenido { padding: 1rem; font-size: 0.95rem; }
-    
-    .logos-footer { flex-direction: column; gap: 1.5rem; }
+    main { padding: 2rem 1.5rem; }
   }
 
-  /* Ajustes extra para celulares muy pequeños */
+  @media(max-width: 768px){
+    header { 
+      padding: 1rem; 
+      flex-direction: column; 
+      gap: 10px; 
+      height: auto; 
+    }
+    
+    .logos-footer { flex-direction: column; gap: 2rem; }
+  }
+
   @media(max-width: 480px){
-    .chapter-title { justify-content: center; text-align: center; }
-    p { text-align: left; } /* A veces el justificado en celular se ve mal */
+    main { padding: 1.5rem 1rem; }
+    .chapter-title { justify-content: flex-start; text-align: left; }
+    p { text-align: left; } 
     .ficha-header { flex-direction: column; align-items: flex-start; }
     .ficha-edad { align-self: flex-start; margin-top: 5px; }
   }
@@ -407,7 +416,7 @@
     <!-- CAPÍTULO 2: MAPA ESTÁTICO -->
     <section id="capitulo2">
       <h2 class="chapter-title"><span>III</span> Mapa de Solapamientos</h2>
-      <p>La siguiente línea de tiempo ilustra visualmente la duración de la vida de cada patriarca. <em>(Desliza hacia los lados si estás en un teléfono celular para ver todo el gráfico)</em>. Observe cómo las barras se superponen. La línea roja punteada marca el año del Diluvio (1656 AM).</p>
+      <p>La siguiente línea de tiempo ilustra visualmente la duración de la vida de cada patriarca. <em>(Desliza el gráfico hacia los lados si estás en un teléfono celular)</em>. Observe cómo las barras se superponen. La línea roja punteada marca el año del Diluvio (1656 AM).</p>
 
       <div class="timeline-box">
         <div class="timeline-wrapper">
