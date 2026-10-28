@@ -10,12 +10,12 @@
     --rojo-vino:#7a201c;
     --dorado:#b8860b;
     --borde-oro:#c9a96a;
+    --rojo-mate: #8b1c1c; 
   }
   
   *{box-sizing:border-box; margin:0; padding:0;}
   
   html, body {
-    /* Evita que la página se desplace hacia los lados en celulares */
     overflow-x: hidden; 
     width: 100%;
   }
@@ -24,57 +24,80 @@
     font-family:'Georgia', 'Times New Roman', serif; 
     color:var(--tinta); 
     line-height:1.8;
-    /* Tipografía fluida: se adapta al tamaño de la pantalla sin límites estrictos */
     font-size: clamp(16px, 1.2vw + 8px, 22px); 
     
-    /* FONDO DE PERGAMINO */
-    background-image: url('pergamino.jpg'); 
+    /* FONDO DE PERGAMINO BASE */
     background-color: #e5d5b7;
+    background-image: url('pergamino.jpg'); 
     background-size: cover;
     background-attachment: fixed;
     background-position: center;
+    
+    /* Necesario para posicionar el logo de fondo */
+    position: relative; 
+  }
+
+  /* =========================================
+     LOGO DE FONDO TRANSPARENTE (JESÚS)
+     ========================================= */
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    /* AQUÍ PONES EL NOMBRE DE TU IMAGEN */
+    background-image: url('logo-jesus.png'); 
+    background-size: contain; /* Para que se vea completo */
+    background-position: center;
+    background-repeat: no-repeat;
+    /* AQUÍ CONTROLAS LA TRANSPARENCIA: 0.08 es 8% de opacidad */
+    opacity: 0.08; 
+    z-index: -1; /* Lo manda detrás de todo el contenido */
+    pointer-events: none; /* Evita que interfiera con los clics del ratón */
   }
   
   /* HEADER (Logos) */
   header{
-    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    background: linear-gradient(135deg, #8b1c1c 0%, #5c1010 100%);
     padding: 1rem 2rem; 
     display: flex; justify-content: space-between; align-items: center; 
     position: sticky; top: 0; z-index: 100;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    border-bottom: 3px solid #ffffff;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+    border-bottom: 3px solid var(--dorado); 
     min-height: 85px;
     gap: 20px;
   }
 
   /* DISEÑO DE LOGOS CON IMÁGENES */
   .logo-shock-img {
-    height: clamp(45px, 5vw, 90px); /* Crece según la pantalla */
+    height: clamp(45px, 5vw, 90px);
     width: auto;
     object-fit: contain;
-    filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.3));
+    filter: drop-shadow(0px 0px 8px rgba(255, 255, 255, 0.8));
   }
 
   .logo-theos-img {
     height: clamp(40px, 4vw, 80px);
     width: auto;
     object-fit: contain;
-    filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.3));
+    filter: drop-shadow(0px 0px 8px rgba(255, 255, 255, 0.8));
   }
 
-  /* LAYOUT DEL LIBRO (Sin límite de ancho) */
+  /* LAYOUT DEL LIBRO */
   .layout{
     display: grid; 
-    grid-template-columns: 300px 1fr; /* El índice mide 300px, el resto es libre */
-    width: 96%; /* Ocupa casi toda la pantalla */
-    max-width: none; /* ¡SIN LÍMITES! */
+    grid-template-columns: 300px 1fr; 
+    width: 96%; 
+    max-width: none; 
     margin: 2rem auto; 
-    background: rgba(253, 251, 247, 0.95); 
+    background: rgba(253, 251, 247, 0.95); /* Casi opaco para que el texto resalte */
     box-shadow: 0 0 30px rgba(0,0,0,0.15); 
     border: 1px solid var(--borde-oro);
     border-radius: 8px;
     min-height: 90vh;
     overflow: hidden; 
+    /* Posicionamiento relativo para que el fondo no lo tape */
+    position: relative; 
+    z-index: 1; 
   }
   
   /* INDICE */
@@ -123,7 +146,7 @@
 
   /* FICHAS (Acordeón) */
   .ficha-container {
-    background: rgba(255, 255, 255, 0.7);
+    background: rgba(255, 255, 255, 0.85); /* Un poco más de opacidad para resaltar */
     border: 1px solid var(--borde-oro);
     border-radius: 8px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.05);
@@ -135,7 +158,7 @@
   .ficha-header {
     display: flex; justify-content: space-between; align-items: center;
     padding: 1.5rem; cursor: pointer;
-    background: rgba(240, 230, 210, 0.8); transition: background 0.3s;
+    background: rgba(240, 230, 210, 0.9); transition: background 0.3s;
     flex-wrap: wrap; gap: 10px;
   }
   .ficha-header:hover { background: rgba(230, 215, 190, 1); }
@@ -149,7 +172,7 @@
   @keyframes fadeIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
 
   /* CITAS Y LISTAS */
-  .cita-biblica { background: rgba(235, 225, 205, 0.9); border-left: 5px solid var(--rojo-vino); padding: 1.5rem; margin: 2rem 0; font-style: italic; color: var(--tinta); font-size: 1.15rem; border-radius: 0 8px 8px 0; word-wrap: break-word; }
+  .cita-biblica { background: rgba(235, 225, 205, 0.95); border-left: 5px solid var(--rojo-vino); padding: 1.5rem; margin: 2rem 0; font-style: italic; color: var(--tinta); font-size: 1.15rem; border-radius: 0 8px 8px 0; word-wrap: break-word; }
   .cita-biblica strong { display: block; font-style: normal; color: var(--rojo-vino); font-family: Arial; margin-bottom: 0.5rem; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 1px;}
   ul.lista-estudio { margin-left: 2rem; margin-bottom: 2rem; }
   ul.lista-estudio li { margin-bottom: 1rem; }
@@ -182,15 +205,17 @@
 
   /* FOOTER */
   footer{
-    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    background: linear-gradient(135deg, #8b1c1c 0%, #5c1010 100%);
     color: #ffffff; padding: 4rem 2rem; text-align: center; 
-    border-top: 4px solid #ffffff; 
+    border-top: 4px solid var(--dorado); 
     margin-top: 4rem;
     width: 100%;
+    position: relative;
+    z-index: 1;
   }
-  footer .versiculos-finales {max-width: 900px; margin: 0 auto 3rem auto; font-style: italic; color: #ffffff; font-size: 1.2rem; text-shadow: 1px 1px 2px rgba(0,0,0,0.2);}
+  footer .versiculos-finales {max-width: 900px; margin: 0 auto 3rem auto; font-style: italic; color: #ffffff; font-size: 1.2rem; text-shadow: 1px 1px 3px rgba(0,0,0,0.4);}
   footer .versiculos-finales p {margin-bottom: 2rem;}
-  footer .versiculos-finales strong {color: #003366; font-style: normal; display: block; font-family: Arial; font-size: 1rem; text-transform: uppercase; margin-bottom: 8px; text-shadow: none;}
+  footer .versiculos-finales strong {color: #f1c40f; font-style: normal; display: block; font-family: Arial; font-size: 1rem; text-transform: uppercase; margin-bottom: 8px; text-shadow: none;}
   
   .logos-footer{display: flex; justify-content: center; align-items: center; gap: 4rem; margin-top: 2rem; flex-wrap: wrap;}
 
@@ -202,7 +227,7 @@
      ========================================= */
   @media(max-width: 1024px){
     .layout{
-      grid-template-columns: 1fr; /* Una sola columna */
+      grid-template-columns: 1fr; 
       width: 100%; 
       margin: 0; 
       border-radius: 0;
@@ -216,7 +241,6 @@
       padding: 1.5rem 1rem; text-align: center;
     }
     
-    /* El índice se desliza horizontalmente en tablets/celulares */
     aside nav ul { 
       display: flex; 
       flex-wrap: nowrap; 
@@ -234,6 +258,12 @@
     }
     
     main { padding: 2rem 1.5rem; }
+    
+    /* En móviles, hacemos el logo de fondo un poco más grande para que se note */
+    body::before {
+      background-size: 120%; 
+      opacity: 0.06; /* Un poco más transparente para no molestar la lectura en pantallas pequeñas */
+    }
   }
 
   @media(max-width: 768px){
