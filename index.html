@@ -10,6 +10,8 @@
     --rojo-vino:#7a201c;
     --dorado:#b8860b;
     --borde-oro:#c9a96a;
+    --gris-fondo: #f4f4f4;
+    --texto-header: #333;
   }
   
   *{box-sizing:border-box; margin:0; padding:0;}
@@ -34,60 +36,44 @@
     
     position: relative; 
   }
-
-  /* CAPA OSCURA SOBRE EL DESIERTO PARA QUE EL TEXTO SE LEA BIEN */
-  body::before {
-    content: "";
-    position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background-color: rgba(0, 0, 0, 0.65); /* Un poco más oscuro */
-    z-index: -1; 
-    pointer-events: none; 
-  }
-
-  /* LOGO DEL MACHO CABRÍO COMO MARCA DE AGUA EN EL FONDO */
-  body::after {
-    content: "";
-    position: fixed;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    width: 80vw; 
-    height: 80vh;
-    background-image: url('logo-cabrio.png');
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-    opacity: 0.05; /* Súper transparente para no molestar la lectura */
-    z-index: -1;
-    pointer-events: none;
-  }
   
   /* =========================================
-     HEADER (Franja Roja con THEOS LOGOS)
+     HEADER PROFESIONAL (Logos a la izquierda)
      ========================================= */
   header{
-    /* Degradado rojo mate */
-    background: linear-gradient(135deg, #8b1c1c 0%, #5c1010 100%);
-    padding: 1rem 2rem; 
-    display: flex; justify-content: center; align-items: center; 
+    background-color: #ffffff; 
+    padding: 0.8rem 2rem; 
+    display: flex; 
+    justify-content: flex-start; 
+    align-items: center; 
     
-    /* Fijo al deslizar */
     position: sticky; 
     top: 0; 
     z-index: 9999; 
     
-    box-shadow: 0 4px 15px rgba(0,0,0,0.8);
-    border-bottom: 3px solid var(--dorado); 
-    min-height: 110px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3); 
+    border-bottom: 3px solid var(--rojo-vino); 
+    min-height: 90px;
+    gap: 30px; 
   }
 
-  /* LOGO PRINCIPAL THEOS LOGOS */
   .logo-theos-img {
-    height: clamp(60px, 6vw, 90px);
+    height: clamp(50px, 4vw, 70px);
     width: auto;
     object-fit: contain;
-    /* Sombreado blanco para resaltar sobre el rojo */
-    filter: drop-shadow(0px 0px 10px rgba(255, 255, 255, 0.7));
+  }
+
+  .divisor-header {
+    width: 2px;
+    height: 50px;
+    background-color: #ddd;
+    border-radius: 2px;
+  }
+
+  .logo-cabrio-img {
+    height: clamp(60px, 5vw, 85px);
+    width: auto;
+    object-fit: contain;
   }
 
   /* LAYOUT DEL LIBRO */
@@ -97,8 +83,8 @@
     width: 96%; 
     max-width: none; 
     margin: 3rem auto; 
-    background: rgba(245, 235, 215, 0.95); 
-    box-shadow: 0 10px 40px rgba(0,0,0,0.9); 
+    background: #fdfbf7; 
+    box-shadow: 0 15px 50px rgba(0,0,0,0.7); 
     border: 2px solid var(--borde-oro);
     border-radius: 8px;
     min-height: 90vh;
@@ -109,12 +95,12 @@
   
   /* INDICE */
   aside{
-    background: rgba(235, 220, 195, 0.95); 
+    background: #f5ebd7; 
     border-right: 2px solid var(--borde-oro); 
     padding: 2rem 1.5rem; 
     position: sticky; 
-    top: 140px; 
-    height: calc(100vh - 140px); 
+    top: 95px; 
+    height: calc(100vh - 95px); 
     overflow-y: auto;
   }
   aside h2{
@@ -133,7 +119,7 @@
 
   /* CONTENIDO PRINCIPAL */
   main{padding: 4rem 5rem; scroll-behavior: smooth; width: 100%; overflow: hidden;}
-  section{margin-bottom: 5rem; scroll-margin-top: 150px;} 
+  section{margin-bottom: 5rem; scroll-margin-top: 120px;} 
   
   .chapter-title{
     font-size: clamp(1.8rem, 3vw, 2.8rem); color: var(--rojo-vino); 
@@ -153,10 +139,10 @@
 
   /* FICHAS (Acordeón) */
   .ficha-container {
-    background: rgba(255, 255, 255, 0.7); 
+    background: #ffffff; 
     border: 1px solid var(--borde-oro);
     border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
     margin-bottom: 3rem;
     width: 100%;
   }
@@ -165,28 +151,28 @@
   .ficha-header {
     display: flex; justify-content: space-between; align-items: center;
     padding: 1.5rem; cursor: pointer;
-    background: rgba(240, 230, 210, 0.8); transition: background 0.3s;
+    background: #f7f3ea; transition: background 0.3s;
     flex-wrap: wrap; gap: 10px;
   }
-  .ficha-header:hover { background: rgba(230, 215, 190, 1); }
-  .ficha-header.active { background: rgba(255, 255, 255, 1); border-bottom: 1px dashed var(--borde-oro); }
+  .ficha-header:hover { background: #efe9dc; }
+  .ficha-header.active { background: #ffffff; border-bottom: 1px dashed var(--borde-oro); }
   .ficha-nombre { font-size: clamp(1.3rem, 2vw, 1.6rem); font-weight: bold; color: var(--rojo-vino); display: flex; align-items: center; gap: 10px; }
   .ficha-nombre::before { content: '✝'; color: var(--dorado); font-size: 1.3rem; }
   .ficha-edad { font-family: Arial, sans-serif; font-weight: bold; color: #fdfbf7; background: var(--rojo-vino); padding: 0.3rem 1rem; border-radius: 20px; font-size: 1rem; }
-  .ficha-contenido { display: none; padding: 2rem; background: rgba(255, 252, 245, 0.95); font-size: clamp(1rem, 1vw + 10px, 1.2rem); line-height: 1.8; word-wrap: break-word;}
+  .ficha-contenido { display: none; padding: 2rem; background: #ffffff; font-size: clamp(1rem, 1vw + 10px, 1.2rem); line-height: 1.8; word-wrap: break-word;}
   .ficha-header.active + .ficha-contenido { display: block; animation: fadeIn 0.4s ease-in-out; }
   .ficha-contenido strong { color: var(--rojo-vino); }
   @keyframes fadeIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
 
   /* CITAS Y LISTAS */
-  .cita-biblica { background: rgba(235, 225, 205, 0.9); border-left: 5px solid var(--rojo-vino); padding: 1.5rem; margin: 2rem 0; font-style: italic; color: var(--tinta); font-size: 1.15rem; border-radius: 0 8px 8px 0; word-wrap: break-word; }
+  .cita-biblica { background: #f5ebd7; border-left: 5px solid var(--rojo-vino); padding: 1.5rem; margin: 2rem 0; font-style: italic; color: var(--tinta); font-size: 1.15rem; border-radius: 0 8px 8px 0; word-wrap: break-word; }
   .cita-biblica strong { display: block; font-style: normal; color: var(--rojo-vino); font-family: Arial; margin-bottom: 0.5rem; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 1px;}
   ul.lista-estudio { margin-left: 2rem; margin-bottom: 2rem; }
   ul.lista-estudio li { margin-bottom: 1rem; }
 
   /* LÍNEA DE TIEMPO RESPONSIVA */
   .timeline-box { 
-    background: rgba(255, 255, 255, 0.9); 
+    background: #ffffff; 
     padding: 2rem 1rem; 
     border: 1px solid var(--borde-oro); 
     border-radius: 8px; 
@@ -212,44 +198,38 @@
 
   /* FOOTER */
   footer{
-    background: linear-gradient(135deg, #8b1c1c 0%, #5c1010 100%);
-    color: #ffffff; padding: 4rem 2rem; text-align: center; 
-    border-top: 4px solid var(--dorado); 
+    background: #fdfbf7;
+    color: var(--tinta); padding: 3rem 2rem; text-align: center; 
+    border-top: 4px solid var(--rojo-vino); 
     margin-top: 4rem;
     width: 100%;
     position: relative;
     z-index: 1;
+    box-shadow: 0 -5px 20px rgba(0,0,0,0.3);
   }
-  footer .versiculos-finales {max-width: 900px; margin: 0 auto 3rem auto; font-style: italic; color: #ffffff; font-size: 1.2rem; text-shadow: 1px 1px 3px rgba(0,0,0,0.6);}
+  footer .versiculos-finales {max-width: 900px; margin: 0 auto 3rem auto; font-style: italic; color: var(--rojo-vino); font-size: 1.2rem;}
   footer .versiculos-finales p {margin-bottom: 2rem;}
-  footer .versiculos-finales strong {color: #f1c40f; font-style: normal; display: block; font-family: Arial; font-size: 1rem; text-transform: uppercase; margin-bottom: 8px; text-shadow: none;}
+  footer .versiculos-finales strong {color: var(--tinta); font-style: normal; display: block; font-family: Arial; font-size: 1rem; text-transform: uppercase; margin-bottom: 8px;}
   
-  /* LOGOS EN EL FOOTER (Theos principal, Cabrío secundario) */
   .logos-footer {
     display: flex; 
     justify-content: center; 
     align-items: center; 
-    gap: 4rem; 
+    gap: 2rem; 
     margin-top: 2rem; 
     flex-wrap: wrap;
   }
 
-  .logos-footer .logo-theos-img { 
-    height: clamp(50px, 5vw, 80px); 
-    filter: drop-shadow(0px 0px 8px rgba(255, 255, 255, 0.5));
-  }
-  
-  .logos-footer .logo-cabrio-img { 
-    height: clamp(60px, 6vw, 90px); 
-    filter: drop-shadow(0px 0px 8px rgba(255, 255, 255, 0.5));
-  }
+  .logos-footer .logo-theos-img { height: clamp(40px, 4vw, 60px); }
+  .logos-footer .logo-cabrio-img { height: clamp(50px, 5vw, 70px); }
 
   /* =========================================
      DISEÑO RESPONSIVO (Tablets y Móviles)
      ========================================= */
   @media(max-width: 1024px){
     header {
-      padding: 1rem;
+      padding: 0.8rem 1rem;
+      gap: 15px;
     }
 
     .layout{
@@ -257,8 +237,8 @@
       width: 100%; 
       margin: 1rem auto; 
       border-radius: 8px;
-      border-left: 2px solid var(--borde-oro);
-      border-right: 2px solid var(--borde-oro);
+      border-left: none;
+      border-right: none;
     }
     
     aside {
@@ -279,19 +259,23 @@
     
     aside nav a { 
       padding: 0.6rem 1.2rem; border: 1px solid var(--borde-oro); 
-      border-radius: 20px; font-size: 1rem; background: rgba(255,255,255,0.8); 
+      border-radius: 20px; font-size: 1rem; background: #ffffff; 
       white-space: nowrap; 
     }
     
     main { padding: 2rem 1.5rem; }
-    section { scroll-margin-top: 120px; }
+    section { scroll-margin-top: 100px; }
   }
 
-  @media(max-width: 768px){
-    .logos-footer { flex-direction: column; gap: 2rem; }
-    body::before { background-color: rgba(0, 0, 0, 0.75); } 
-    /* En móviles el logo de fondo se hace un poco más pequeño para no molestar */
-    body::after { width: 100vw; height: 60vh; } 
+  @media(max-width: 600px){
+    header {
+      justify-content: center;
+    }
+    .divisor-header { display: none; }
+    .logo-theos-img { height: 45px; }
+    .logo-cabrio-img { height: 50px; }
+    
+    .logos-footer { flex-direction: column; gap: 1.5rem; }
   }
 
   @media(max-width: 480px){
@@ -306,8 +290,11 @@
 <body>
 
 <header>
-  <!-- THEOS LOGOS COMO EL REY DE LA PÁGINA -->
   <img src="logo-theos.png" alt="Theos Logos" class="logo-theos-img">
+  
+  <div class="divisor-header"></div>
+  
+  <img src="logo-cabrio.png" alt="Sello Macho Cabrío" class="logo-cabrio-img">
 </header>
 
 <div class="layout">
@@ -320,8 +307,9 @@
         <li><a href="#prologo"><span class="num">I.</span> Prólogo</a></li>
         <li><a href="#capitulo1"><span class="num">II.</span> Patriarcas</a></li>
         <li><a href="#capitulo2"><span class="num">III.</span> Solapamientos</a></li>
-        <li><a href="#capitulo3"><span class="num">IV.</span> Redención</a></li>
-        <li><a href="#epilogo"><span class="num">V.</span> Epílogo</a></li>
+        <li><a href="#capitulo14"><span class="num">IV.</span> El Misterio del 14</a></li>
+        <li><a href="#capitulo3"><span class="num">V.</span> Redención</a></li>
+        <li><a href="#epilogo"><span class="num">VI.</span> Epílogo</a></li>
       </ul>
     </nav>
   </aside>
@@ -493,9 +481,42 @@
       </ul>
     </section>
 
+    <!-- NUEVA SECCIÓN: EL MISTERIO DEL 14 -->
+    <section id="capitulo14">
+      <h2 class="chapter-title"><span>IV</span> El Misterio del 14</h2>
+      <p>En el Evangelio de Mateo, la genealogía de Jesús está estructurada de una manera muy particular. El evangelista no solo nos da una lista de nombres, sino que los agrupa en <strong>tres bloques de catorce generaciones</strong> cada uno:</p>
+
+      <div class="cita-biblica">
+        <strong>Mateo 1:17</strong>
+        «De modo que todas las generaciones desde Abraham hasta David son catorce generaciones; y desde David hasta la deportación a Babilonia, catorce generaciones; y desde la deportación a Babilonia hasta Cristo, catorce generaciones.»
+      </div>
+
+      <p>Esta repetición del número 14 no es un simple capricho literario. Detrás de ella se esconde un mensaje teológico profundo que los lectores judíos de Mateo podían captar de inmediato. </p>
+
+      <h3>El Significado del Número 14</h3>
+      <p>Para entender el porqué del 14, debemos recurrir a un sistema llamado <strong>gematria</strong> (o guematria). En el hebreo antiguo, las letras del alfabeto también tenían un valor numérico. El nombre de <strong>David</strong> en hebreo se escribe con tres consonantes: <strong>D-V-D</strong> (דוד).</p>
+      
+      <ul class="lista-estudio">
+        <li><strong>D (Dalet)</strong> = 4</li>
+        <li><strong>V (Vav)</strong> = 6</li>
+        <li><strong>D (Dalet)</strong> = 4</li>
+      </ul>
+
+      <p>Si sumamos estos valores (4 + 6 + 4), el resultado es exactamente <strong>14</strong> [citation:1][citation:3].</p>
+
+      <p>Al dividir la genealogía en tres grupos de 14, Mateo está "gritando" de forma silenciosa pero contundente que <strong>Jesús es el Hijo de David</strong>. Es una forma de decir: "El Mesías prometido, el heredero del trono, ha llegado". Mateo usa este juego numérico para demostrar que Jesús cumple las profecías del Antiguo Testamento, pues el Mesías debía ser descendiente de David.</p>
+      
+      <p>Incluso el hecho de que sean <strong>tres</strong> repeticiones no es casual. Para la mentalidad hebrea, repetir algo tres veces era una forma de establecerlo con firmeza y énfasis absoluto, similar a cuando decimos "de verdad, de verdad".</p>
+
+      <div class="cita-biblica">
+        <strong>El mensaje oculto</strong>
+        «DAVID, DAVID, DAVID». Tres veces catorce. Tres veces David. El evangelista está usando la matemática para proclamar la identidad del Mesías.
+      </div>
+    </section>
+
     <!-- CAPÍTULO 3: LÍNEA DE REDENCIÓN -->
     <section id="capitulo3">
-      <h2 class="chapter-title"><span>IV</span> La Línea de la Redención</h2>
+      <h2 class="chapter-title"><span>V</span> La Línea de la Redención</h2>
       <p>Desde Génesis 5 y 11, la Escritura teje el hilo rojo de la salvación que conecta a Adán con Cristo.</p>
       
       <h3>De Abraham al Rey David</h3>
@@ -515,12 +536,13 @@
 
     <!-- EPÍLOGO -->
     <section id="epilogo">
-      <h2 class="chapter-title"><span>V</span> Epílogo y Fuentes</h2>
+      <h2 class="chapter-title"><span>VI</span> Epílogo y Fuentes</h2>
       <p><strong>Observaciones Teológicas:</strong></p>
       <ul class="lista-estudio">
         <li><strong>Matusalén y el Diluvio:</strong> La suma 187 + 782 + 600 = 969 hace que muera exactamente el año del Diluvio. Su nombre es un testimonio profético de la paciencia de Dios.</li>
         <li><strong>Enoc:</strong> Prefigura la resurrección y el arrebatamiento (He 11:5; 1 Ts 4:17). Caminó con Dios en medio de una generación corrupta.</li>
         <li><strong>Disminución de la longevidad:</strong> Tras el Diluvio, las vidas se acortan drásticamente (Gn 6:3; Salmos 90). Es un efecto del juicio y el cambio de condiciones.</li>
+        <li><strong>El 14 de Mateo:</strong> La estructura triple de catorce generaciones es un recurso de la gematría hebrea para señalar a Jesús como el "Hijo de David" (D+V+D = 4+6+4 = 14).</li>
       </ul>
 
       <p style="margin-top: 2rem;"><strong>Fuente de Autoridad:</strong></p>
@@ -536,7 +558,7 @@
     <p><strong>Romanos 5:8</strong><br>«Mas Dios muestra su amor para con nosotros, en que siendo aún pecadores, Cristo murió por nosotros.»</p>
   </div>
   
-  <!-- LOGOS EN EL FOOTER: Theos Logos principal, Cabrío de sello -->
+  <!-- LOGOS EN EL FOOTER -->
   <div class="logos-footer">
     <img src="logo-theos.png" alt="Theos Logos" class="logo-theos-img">
     <img src="logo-cabrio.png" alt="Sello Macho Cabrío y Oveja" class="logo-cabrio-img">
@@ -544,7 +566,6 @@
 </footer>
 
 <script>
-  // Función simple para abrir y cerrar las fichas de los patriarcas
   function toggleFicha(element) {
     const allHeaders = document.querySelectorAll('.ficha-header');
     allHeaders.forEach(header => {
