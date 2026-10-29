@@ -36,9 +36,36 @@
     
     position: relative; 
   }
+
+  /* CAPA OSCURA SOBRE EL DESIERTO PARA RESALTAR EL TEXTO */
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.65); 
+    z-index: -2; 
+    pointer-events: none; 
+  }
+
+  /* TU NUEVO SELLO DE JESÚS ESTAMPADO EN EL FONDO */
+  body::after {
+    content: "";
+    position: fixed;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 75vw; /* Tamaño del sello */
+    height: 75vh;
+    background-image: url('sello-jesus.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.15; /* Transparencia del sello (15%) */
+    z-index: -1;
+    pointer-events: none;
+  }
   
   /* =========================================
-     HEADER PROFESIONAL (Logos a la izquierda)
+     HEADER PROFESIONAL (Theos a la izquierda)
      ========================================= */
   header{
     background-color: #ffffff; 
@@ -59,19 +86,6 @@
 
   .logo-theos-img {
     height: clamp(50px, 4vw, 70px);
-    width: auto;
-    object-fit: contain;
-  }
-
-  .divisor-header {
-    width: 2px;
-    height: 50px;
-    background-color: #ddd;
-    border-radius: 2px;
-  }
-
-  .logo-cabrio-img {
-    height: clamp(60px, 5vw, 85px);
     width: auto;
     object-fit: contain;
   }
@@ -221,7 +235,7 @@
   }
 
   .logos-footer .logo-theos-img { height: clamp(40px, 4vw, 60px); }
-  .logos-footer .logo-cabrio-img { height: clamp(50px, 5vw, 70px); }
+  .logos-footer .sello-jesus-img { height: clamp(50px, 5vw, 70px); }
 
   /* =========================================
      DISEÑO RESPONSIVO (Tablets y Móviles)
@@ -265,15 +279,16 @@
     
     main { padding: 2rem 1.5rem; }
     section { scroll-margin-top: 100px; }
+    
+    /* El sello se hace un poco más grande en móviles para que se note */
+    body::after { width: 95vw; height: 60vh; opacity: 0.12; }
   }
 
   @media(max-width: 600px){
     header {
       justify-content: center;
     }
-    .divisor-header { display: none; }
     .logo-theos-img { height: 45px; }
-    .logo-cabrio-img { height: 50px; }
     
     .logos-footer { flex-direction: column; gap: 1.5rem; }
   }
@@ -290,11 +305,8 @@
 <body>
 
 <header>
+  <!-- SOLO THEOS LOGOS EN EL HEADER, LIMPIO Y PROFESIONAL -->
   <img src="logo-theos.png" alt="Theos Logos" class="logo-theos-img">
-  
-  <div class="divisor-header"></div>
-  
-  <img src="logo-cabrio.png" alt="Sello Macho Cabrío" class="logo-cabrio-img">
 </header>
 
 <div class="layout">
@@ -502,7 +514,7 @@
         <li><strong>D (Dalet)</strong> = 4</li>
       </ul>
 
-      <p>Si sumamos estos valores (4 + 6 + 4), el resultado es exactamente <strong>14</strong> [citation:1][citation:3].</p>
+      <p>Si sumamos estos valores (4 + 6 + 4), el resultado es exactamente <strong>14</strong> .</p>
 
       <p>Al dividir la genealogía en tres grupos de 14, Mateo está "gritando" de forma silenciosa pero contundente que <strong>Jesús es el Hijo de David</strong>. Es una forma de decir: "El Mesías prometido, el heredero del trono, ha llegado". Mateo usa este juego numérico para demostrar que Jesús cumple las profecías del Antiguo Testamento, pues el Mesías debía ser descendiente de David.</p>
       
@@ -561,7 +573,7 @@
   <!-- LOGOS EN EL FOOTER -->
   <div class="logos-footer">
     <img src="logo-theos.png" alt="Theos Logos" class="logo-theos-img">
-    <img src="logo-cabrio.png" alt="Sello Macho Cabrío y Oveja" class="logo-cabrio-img">
+    <img src="sello-jesus.png" alt="Sello de Jesús" class="sello-jesus-img">
   </div>
 </footer>
 
